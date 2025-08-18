@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- FESTIVAL DEL FUEGO VIVO · LANDING -->
+    <div id="ffv-landing" class="ffv">
+        <style>
+            /* ====== RESET LOCAL & TOKENS ====== */
+            #ffv-landing {
+                --ffv-bg: #0f0e0e;
+                --ffv-ink: #f8f1e5;
+                --ffv-gold: #d88a1a;
+                --ffv-accent: #e34f1c;
+                --ffv-ink-dim: #d6cec0;
+                --ffv-card: #171515;
+                --ffv-border: #2a2626;
+                font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+                color: var(--ffv-ink);
+                background: var(--ffv-bg);
+            }
+
+            #ffv-landing .wrap {
+                max-width: 1160px;
+                margin: 0 auto;
+                padding: clamp(16px, 3vw, 32px);
+            }
+
+            #ffv-landing h1,
+            h2,
+            h3 {
+                font-family: "Cinzel", Georgia, serif;
+                line-height: 1.15;
+                margin: 0 0 .5em;
+                color: var(--ffv-ink);
+            }
+
+            #ffv-landing p {
+                color: var(--ffv-ink-dim);
+                line-height: 1.7;
+                margin: 0 0 1em;
+            }
+
+            #ffv-landing .btn {
+                display: inline-block;
+                background: var(--ffv-gold);
+                color: #1a140a;
+                padding: .9rem 1.1rem;
+                border-radius: 12px;
+                font-weight: 700;
+                text-decoration: none;
+                border: 2px solid transparent;
+                transition: transform .15s ease, box-shadow .15s ease;
+            }
+
+            #ffv-landing .btn:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 6px 16px rgba(0, 0, 0, .35);
+            }
+
+            #ffv-landing .btn-outline {
+                background: transparent;
+                color: var(--ffv-ink);
+                border-color: var(--ffv-border);
+            }
+
+            #ffv-landing .muted {
+                color: var(--ffv-ink-dim);
+            }
+
+            #ffv-landing .card {
+                background: var(--ffv-card);
+                border: 1px solid var(--ffv-border);
+                border-radius: 16px;
+                padding: clamp(16px, 2.5vw, 24px);
+            }
+
+            #ffv-landing .grid {
+                display: grid;
+                gap: clamp(12px, 2vw, 20px);
+            }
+
+            #ffv-landing .grid-2 {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            #ffv-landing .grid-3 {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            #ffv-landing .grid-4 {
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+            }
+
+            @media (max-width: 960px) {
+
+                #ffv-landing .grid-2,
+                #ffv-landing .grid-3,
+                #ffv-landing .grid-4 {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            /* ====== HERO ====== */
+            #ffv-landing .hero {
+                position: relative;
+                isolation: isolate;
+                min-height: 72vh;
+                display: grid;
+                place-items: end;
+                background: radial-gradient(80% 80% at 50% 20%, rgba(227, 79, 28, .25), transparent 60%), #0e0d0b;
+                overflow: hidden;
+                border-bottom: 1px solid var(--ffv-border);
+            }
+
+            #ffv-landing .hero .bg {
+                position: absolute;
+                inset: 0;
+                z-index: -1;
+                opacity: .55;
+                background-size: cover;
+                background-position: center;
+                background-image: image-set(url('/wp-content/uploads/ffv/hero-1920.webp') type('image/webp') 1x);
+                filter: saturate(1.15) contrast(1.05) brightness(.95);
+            }
+
+            #ffv-landing .hero .veil {
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(to top, rgba(15, 14, 14, .85), rgba(15, 14, 14, .25));
+            }
+
+            #ffv-landing .hero .content {
+                padding: clamp(24px, 5vw, 48px);
+                text-align: left;
+            }
+
+            #ffv-landing .kicker {
+                color: var(--ffv-gold);
+                font-weight: 700;
+                letter-spacing: .06em;
+                text-transform: uppercase;
+            }
+
+            #ffv-landing .title {
+                font-size: clamp(32px, 5.2vw, 60px);
+                text-wrap: balance;
+            }
+
+            #ffv-landing .subtitle {
+                font-size: clamp(16px, 2vw, 20px);
+                color: var(--ffv-ink-dim);
+                margin-bottom: 1rem;
+            }
+
+            #ffv-landing .facts {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px 16px;
+                margin: .25rem 0 1.2rem;
+            }
+
+            #ffv-landing .fact {
+                background: rgba(216, 138, 26, .09);
+                border: 1px solid var(--ffv-border);
+                border-radius: 10px;
+                padding: .45rem .7rem;
+            }
+
+            #ffv-landing .cta {
+                display: flex;
+                gap: 12px;
+                flex-wrap: wrap;
+                align-items: center;
+            }
+
+            #ffv-landing .timer {
+                margin-top: 1rem;
+                display: flex;
+                gap: 10px;
+            }
+
+            #ffv-landing .timer .box {
+                background: #120f0d;
+                border: 1px solid var(--ffv-border);
+                border-radius: 12px;
+                padding: .6rem .8rem;
+                min-width: 82px;
+                text-align: center;
+            }
+
+            #ffv-landing .timer .box b {
+                font-size: 1.2rem;
+                color: var(--ffv-gold);
+                display: block;
+            }
+
+            /* ====== SECTION HEAD ====== */
+            #ffv-landing .section-head {
+                margin: 32px 0 18px;
+                display: flex;
+                align-items: end;
+                justify-content: space-between;
+                gap: 16px;
+            }
+
+            #ffv-landing .section-head p {
+                margin: 0;
+            }
+
+            /* ====== TIMELINE ====== */
+            #ffv-landing .timeline {
+                position: relative;
+                padding-left: 18px;
+            }
+
+            #ffv-landing .timeline::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 6px;
+                bottom: 6px;
+                width: 3px;
+                background: linear-gradient(var(--ffv-gold), transparent);
+                border-radius: 3px;
+            }
+
+            #ffv-landing .tl-item {
+                position: relative;
+                margin-bottom: 16px;
+                padding-left: 12px;
+            }
+
+            #ffv-landing .tl-item::before {
+                content: "";
+                position: absolute;
+                left: -7px;
+                top: 10px;
+                width: 14px;
+                height: 14px;
+                border-radius: 50%;
+                background: var(--ffv-gold);
+                box-shadow: 0 0 0 3px rgba(216, 138, 26, .25);
+            }
+
+            #ffv-landing .tl-title {
+                font-weight: 800;
+                color: var(--ffv-ink);
+            }
+
+            #ffv-landing .tl-time {
+                color: var(--ffv-ink-dim);
+                font-size: .95rem;
+                margin-bottom: .25rem;
+            }
+
+            /* ====== STANDS GRID ====== */
+            #ffv-landing .stand {
+                background: #141211;
+                border: 1px solid var(--ffv-border);
+                border-radius: 14px;
+                padding: 14px;
+                display: flex;
+                gap: 12px;
+                align-items: center;
+            }
+
+            #ffv-landing .stand img {
+                width: 48px;
+                height: 48px;
+                object-fit: cover;
+                border-radius: 10px;
+                border: 1px solid var(--ffv-border);
+            }
+
+            #ffv-landing .stand h4 {
+                margin: .1rem 0;
+                font-size: 1.05rem;
+            }
+
+            #ffv-landing .stand p {
+                margin: 0;
+                font-size: .95rem;
+            }
+
+            /* ====== INFO + FAQ ====== */
+            #ffv-landing details {
+                background: #141211;
+                border: 1px solid var(--ffv-border);
+                border-radius: 14px;
+                padding: 14px 16px;
+            }
+
+            #ffv-landing summary {
+                cursor: pointer;
+                font-weight: 700;
+                color: var(--ffv-ink);
+            }
+
+            #ffv-landing .map {
+                aspect-ratio: 16/9;
+                width: 100%;
+                border: 0;
+                border-radius: 14px;
+            }
+
+            /* ====== FOOT ====== */
+            #ffv-landing .foot {
+                border-top: 1px solid var(--ffv-border);
+                padding: 16px 0 32px;
+                text-align: center;
+                color: var(--ffv-ink-dim);
+            }
+
+            /* ====== BADGES ====== */
+            #ffv-landing .badges {
+                display: flex;
+                gap: 14px;
+                align-items: center;
+                flex-wrap: wrap;
+            }
+
+            #ffv-landing .badges img {
+                height: 36px;
+                object-fit: contain;
+                filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .4));
+            }
+        </style>
+
+        <!-- HERO -->
+        <section class="hero" id="hero">
+            <div class="bg"></div>
+            <div class="veil"></div>
+            <div class="wrap content">
+                <div class="kicker">Entrada libre · 01 de noviembre · Talca</div>
+                <h1 class="title">Festival del Fuego Vivo · Talca 2025</h1>
+                <p class="subtitle">Desfile · 12 Stands · Conferencia · Teatro · Un día para vivir la sabiduría del
+                    Antiguo
+                    Egipto.</p>
+                <div class="facts">
+                    <span class="fact">Sábado 01/11 · 12:00 a 21:00</span>
+                    <span class="fact">Ciudad de Talca</span>
+                    <span class="fact">Apto para todo público</span>
+                </div>
+                <div class="cta">
+                    <a href="#form" class="btn">Confirmar asistencia</a>
+                    <a href="#programa" class="btn btn-outline">Ver programa</a>
+                </div>
+                <div class="timer" aria-live="polite" aria-label="Cuenta regresiva al festival">
+                    <div class="box"><b id="ffv-d">–</b><span>Días</span></div>
+                    <div class="box"><b id="ffv-h">–</b><span>Horas</span></div>
+                    <div class="box"><b id="ffv-m">–</b><span>Min</span></div>
+                    <div class="box"><b id="ffv-s">–</b><span>Seg</span></div>
+                </div>
+                <div class="badges" style="margin-top:14px;">
+                    <!-- Sustituir por rutas reales -->
+                    <!-- TODO: Reemplazar con logos reales -->
+                    <img src="assets/img/festival-fuego-vivo-logo--blanco.png" alt="Festival del Fuego Vivo">
+                    <img src="assets/img/gnosis-logo--vert.png" alt="Gnosis Chile">
+
+                    <!-- <img src="/wp-content/uploads/ffv/logo-festival.webp" alt="Festival del Fuego Vivo">
+                    <img src="/wp-content/uploads/ffv/logo-gnosis.webp" alt="Gnosis Chile"> -->
+                </div>
+            </div>
+        </section>
+
+        <!-- INTRO -->
+        <section id="intro">
+            <div class="wrap grid grid-2">
+                <div class="card">
+                    <h2>¿Qué es el Festival?</h2>
+                    <p>El Festival del Fuego Vivo es una jornada cultural gratuita que acerca al público la sabiduría
+                        del
+                        Antiguo Egipto a través del arte, la reflexión y la gnosis práctica. Desfile, 12 stands,
+                        conferencia
+                        y teatro en un mismo día.</p>
+                    <p class="muted">Para todo público: familias, estudiantes, amantes del arte y la historia.</p>
+                    <div class="cta">
+                        <a href="#form" class="btn">Confirmar asistencia</a>
+                        <a href="#stands" class="btn btn-outline">Ver los 12 stands</a>
+                    </div>
+                </div>
+                <div class="card" style="display:grid;place-items:center;">
+                    <!-- Reemplaza por tu video (YouTube embed o MP4 propio) -->
+                    <div
+                        style="width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden;border:1px solid var(--ffv-border);">
+                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/VIDEO_ID?rel=0"
+                            title="Teaser Festival del Fuego Vivo" loading="lazy" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROGRAMA -->
+        <section id="programa">
+            <div class="wrap">
+                <div class="section-head">
+                    <h2>Programa del día</h2>
+                    <a class="btn btn-outline" id="addCal" href="#">Agregar al calendario</a>
+                </div>
+                <div class="card">
+                    <div class="timeline">
+                        <div class="tl-item">
+                            <div class="tl-time">12:00 – 13:00</div>
+                            <div class="tl-title">Desfile de apertura</div>
+                            <p class="muted">Recorrido temático por la ciudad · llegada a zona de stands.</p>
+                        </div>
+                        <div class="tl-item">
+                            <div class="tl-time">13:00 – 18:00</div>
+                            <div class="tl-title">12 Stands temáticos</div>
+                            <p class="muted">Pirámides y Faraón · Mitología · Tarot · Deidades · Libro de los Muertos ·
+                                Música · Autorrealización (Rey Interno) · Justicia Cósmica (Ma’at) · Simbología · Nut e
+                                Isis
+                                · Agrocultura · Gnosis.</p>
+                        </div>
+                        <div class="tl-item">
+                            <div class="tl-time">18:00 – 19:00</div>
+                            <div class="tl-title">Conferencia narrativa: Set y Osiris</div>
+                            <p class="muted">Una narración viva sobre arquetipos, juicio y transformación interior.</p>
+                        </div>
+                        <div class="tl-item">
+                            <div class="tl-time">19:30 – 21:00</div>
+                            <div class="tl-title">Obra de teatro (cierre)</div>
+                            <p class="muted">Misterios de la vida y la muerte en escena.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STANDS -->
+        <section id="stands">
+            <div class="wrap">
+                <h2>Los 12 Stands</h2>
+                <div class="grid grid-3" style="margin-top:12px;">
+                    <!-- Repite tarjetas; reemplaza imágenes -->
+                    <div class="stand"><img src="assets/img/stands/01-pirámides-faraon.jpg" alt="">
+                        <div>
+                            <h4>Pirámides y Faraón</h4>
+                            <p>Arquitectura sagrada y linaje real.</p>
+                        </div>
+                    </div>
+                    <div class="stand"><img src="assets/img/stands/02-mitologia-egipcia.jpg" alt="">
+                        <div>
+                            <h4>Mitología</h4>
+                            <p>Dioses, relatos y símbolos arquetípicos.</p>
+                        </div>
+                    </div>
+                    <div class="stand"><img src="assets/img/stands/03-tarot-egipcio.jpg" alt="">
+                        <div>
+                            <h4>Tarot</h4>
+                            <p>22 Mayores y 56 Menores en clave egipcia.</p>
+                        </div>
+                    </div>
+                    <div class="stand"><img src="assets/img/stands/04-deidades-egipcia.jpg" alt="">
+                        <div>
+                            <h4>Deidades</h4>
+                            <p>Litúrgicas y gnósticas · instrumentos y muestras.</p>
+                        </div>
+                    </div>
+                    <div class="stand"><img src="assets/img/stands/05-libro-de-los-muertos.jpg" alt="">
+                        <div>
+                            <h4>Libro de los Muertos</h4>
+                            <p>Textos, pasajes y juicio del alma.</p>
+                        </div>
+                    </div>
+                    <div class="stand"><img src="assets/img/stands/06-musica-egipcia.jpg" alt="">
+                        <div>
+                            <h4>Música</h4>
+                            <p>Sonidos, ritmos y atmósferas del Nilo.</p>
+                        </div>
+                    </div>
+                    <div class="stand"><img src="assets/img/stands/07-justicia-cosmica.jpg" alt="">
+                        <div>
+                            <h4>Autorrealización</h4>
+                            <p>Rey interno · práctica gnóstica.</p>
+                        </div>
+                    </div>
+                    <div class="stand"><img src="assets/img/stands/08-simbologia-egipcia.jpg" alt="">
+                        <div>
+                            <h4>Justicia Cósmica (Ma’at)</h4>
+                            <p>Verdad, balanza y orden universal.</p>
+                        </div>
+                    </div>
+                    <div class="stand"><img src="assets/img/stands/10-nut-e-isis.jpg" alt="">
+                        <div>
+                            <h4>Simbología</h4>
+                            <p>Ankh, Udyat, cobra y más.</p>
+                        </div>
+                    </div>
+                    <div class="stand"><img src="assets/img/stands/10-nut-e-isis.jpg" alt="">
+                        <div>
+                            <h4>Nut e Isis</h4>
+                            <p>Misterios de la mujer · cuidado y magia.</p>
+                        </div>
+                    </div>
+                    <div class="stand"><img src="assets/img/stands/11-agricultura.jpg" alt="">
+                        <div>
+                            <h4>Agrocultura</h4>
+                            <p>Saberes de la tierra y ciclos.</p>
+                        </div>
+                    </div>
+                    <div class="stand"><img src="assets/img/stands/10-nut-e-isis.jpg" alt="">
+                        <div>
+                            <h4>Gnosis</h4>
+                            <p>Medicina, Astrología, Textos Sagrados.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONFERENCIA / TEATRO -->
+        <section id="destacados">
+            <div class="wrap grid grid-2">
+                <div class="card">
+                    <h2>Conferencia: Set y Osiris</h2>
+                    <p>Una narración viva para comprender arquetipos de muerte, desmembramiento y resurrección; la
+                        victoria
+                        de Horus y el juicio de Osiris como claves de transformación interior.</p>
+                    <p class="muted">18:00 – 19:00 · Talca</p>
+                    <a href="#form" class="btn">Reservar mi lugar (gratis)</a>
+                </div>
+                <div class="card">
+                    <h2>Obra de teatro (cierre)</h2>
+                    <p>Un rito dramático que invita al asombro y al autoconocimiento a través de símbolos, música y
+                        puesta
+                        en escena.</p>
+                    <p class="muted">19:30 – 21:00 · Talca</p>
+                    <a href="#form" class="btn btn-outline">Asistir al cierre</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- INFO PRÁCTICA -->
+        <section id="info">
+            <div class="wrap grid grid-2">
+                <div class="card">
+                    <h2>Información práctica</h2>
+                    <p><b>Lugar:</b> Talca (dirección exacta por confirmar aquí y en redes).</p>
+                    <p><b>Entrada:</b> Libre y gratuita.</p>
+                    <p><b>Recomendaciones:</b> Llega con anticipación al desfile; ropa cómoda y agua.</p>
+                    <div class="grid" style="margin-top:12px;">
+                        <details>
+                            <summary>¿Puedo asistir con niños?</summary>
+                            <p>Sí, es un evento familiar. Se recomienda supervisión en desfile y teatro.</p>
+                        </details>
+                        <details>
+                            <summary>¿Habrá estacionamiento y baños?</summary>
+                            <p>Se informará el detalle al confirmar el lugar exacto.</p>
+                        </details>
+                        <details>
+                            <summary>Accesibilidad</summary>
+                            <p>Zonas de descanso y prioridad a adultos mayores. Indícalo en tu registro.</p>
+                        </details>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2>Mapa</h2>
+                    <!-- Reemplaza el src del mapa cuando esté confirmado -->
+                    <iframe class="map" loading="lazy" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d..."
+                        title="Mapa Talca"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- FORMULARIO -->
+        <section id="form">
+            <div class="wrap">
+                <div class="card">
+                    <h2>Confirma tu asistencia</h2>
+                    <p class="muted">Recibirás el programa detallado y recordatorios por correo.</p>
+                    <!-- Sustituir por tu shortcode (WPForms / Gravity / etc.) -->
+                    <div><!-- [wpforms id="1234" title="false" description="false"] --></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- REDES / ORGANIZA -->
+        <section id="social">
+            <div class="wrap grid grid-2">
+                <div class="card">
+                    <h2>Síguenos</h2>
+                    <p>Facebook · Instagram · YouTube: <b>@festivalFuegovivoChile</b></p>
+                    <div class="badges">
+                        <a class="btn btn-outline" href="https://facebook.com/festivalFuegovivoChile" target="_blank"
+                            rel="noopener">Facebook</a>
+                        <a class="btn btn-outline" href="https://instagram.com/festivalFuegovivoChile" target="_blank"
+                            rel="noopener">Instagram</a>
+                        <a class="btn btn-outline" href="https://youtube.com/@festivalFuegovivoChile" target="_blank"
+                            rel="noopener">YouTube</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2>Organiza</h2>
+                    <p>Asociación Cultural de Estudios Gnósticos de Chile</p>
+                    <div class="badges" aria-label="Logos organizadores">
+                        <img src="/wp-content/uploads/ffv/logo-gnosis.webp" alt="Gnosis Chile">
+                        <img src="/wp-content/uploads/ffv/logo-festival.webp" alt="Festival del Fuego Vivo">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="foot">
+            <div class="wrap">
+                <small>© Festival del Fuego Vivo 2025 · Gnosis Chile · Talca</small>
+            </div>
+        </section>
+
+        <!-- SCRIPTS -->
+        <script>
+            // ====== Countdown (a 01/11/2025 12:00:00 -03:00) ======
+            (function () {
+                const target = new Date('2025-11-01T12:00:00-03:00').getTime();
+                const d = document.getElementById('ffv-d'),
+                    h = document.getElementById('ffv-h'),
+                    m = document.getElementById('ffv-m'),
+                    s = document.getElementById('ffv-s');
+                function tick() {
+                    const now = Date.now();
+                    let delta = Math.max(0, target - now);
+                    const dd = Math.floor(delta / (1000 * 60 * 60 * 24));
+                    delta -= dd * (1000 * 60 * 60 * 24);
+                    const hh = Math.floor(delta / (1000 * 60 * 60));
+                    delta -= hh * (1000 * 60 * 60);
+                    const mm = Math.floor(delta / (1000 * 60));
+                    delta -= mm * (1000 * 60);
+                    const ss = Math.floor(delta / 1000);
+                    d.textContent = dd; h.textContent = ('0' + hh).slice(-2); m.textContent = ('0' + mm).slice(-2); s.textContent = ('0' + ss).slice(-2);
+                }
+                tick(); setInterval(tick, 1000);
+            })();
+
+            // ====== Add to Calendar (ICS dinámico) ======
+            (function () {
+                const btn = document.getElementById('addCal');
+                if (!btn) return;
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    // Evento: 01/11/2025 12:00–21:00 (UTC-3)
+                    const dtStart = '20251101T120000-0300';
+                    const dtEnd = '20251101T210000-0300';
+                    const ics = [
+                        'BEGIN:VCALENDAR',
+                        'VERSION:2.0',
+                        'PRODID:-//Festival del Fuego Vivo//ES',
+                        'CALSCALE:GREGORIAN',
+                        'METHOD:PUBLISH',
+                        'BEGIN:VEVENT',
+                        'UID:ffv-2025-talca@gnosischile.cl',
+                        'DTSTAMP:' + new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z',
+                        'DTSTART:' + dtStart,
+                        'DTEND:' + dtEnd,
+                        'SUMMARY:Festival del Fuego Vivo · Talca',
+                        'DESCRIPTION:Desfile · 12 Stands · Conferencia · Teatro. Entrada gratuita. Más info: https://www.gnosischile.cl/festivalfuegovivo',
+                        'LOCATION:Talca, Chile',
+                        'END:VEVENT',
+                        'END:VCALENDAR'
+                    ].join('\r\n');
+                    const blob = new Blob([ics], { type: 'text/calendar' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url; a.download = 'Festival-del-Fuego-Vivo-2025.ics'; a.click();
+                    setTimeout(() => URL.revokeObjectURL(url), 1500);
+                });
+            })();
+        </script>
+
+        <!-- SCHEMA.ORG EVENT -->
+        <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        "name": "Festival del Fuego Vivo · Talca 2025",
+        "startDate": "2025-11-01T12:00:00-03:00",
+        "endDate": "2025-11-01T21:00:00-03:00",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "description": "Desfile, 12 stands, conferencia narrativa de Set y Osiris y obra de teatro. Entrada libre y gratuita.",
+        "image": ["https://www.gnosischile.cl/wp-content/uploads/ffv/og-ffv-2025.jpg"],
+        "location": {
+          "@type": "Place",
+          "name": "Talca (lugar por confirmar)",
+          "address": { "@type":"PostalAddress", "addressLocality":"Talca", "addressRegion":"Maule", "addressCountry":"CL" }
+        },
+        "organizer": {
+          "@type": "Organization",
+          "name": "Asociación Cultural de Estudios Gnósticos de Chile",
+          "url": "https://www.gnosischile.cl"
+        },
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CLP", "availability": "https://schema.org/InStock" }
+      }
+      </script>
+    </div>
+</body>
+
+</html>
