@@ -331,6 +331,85 @@
                 object-fit: contain;
                 filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .4));
             }
+
+            /* ===== Animated Border (glimmer) ===== */
+            :root {
+                --ffv-ab-radius: 16px;
+                /* radio del borde */
+                --ffv-ab-thickness: 2px;
+                /* “grosor” del falso borde (margen interior) */
+                --ffv-ab-speed: 5s;
+                /* velocidad de giro */
+                --ffv-ab-color: rgba(216, 138, 26, .85);
+                /* dorado (puedes cambiarlo) */
+            }
+
+            .ffv-ab {
+                position: relative;
+                overflow: hidden;
+                border-radius: var(--ffv-ab-radius);
+                isolation: isolate;
+                /* asegura z-index correcto */
+            }
+
+            /* El contenido real va “dentro” con un pequeño margen para simular el borde fino */
+            .ffv-ab__inner {
+                position: relative;
+                z-index: 1;
+                border-radius: inherit;
+                margin: var(--ffv-ab-thickness);
+                background: #141211;
+                /* mantén tu color de tarjeta */
+            }
+
+            /* La magia: una tira delgada con degradado que rota 360° */
+            .ffv-ab::before {
+                content: "";
+                position: absolute;
+                z-index: 0;
+                /* tira vertical (delgada) que pasa por el centro */
+                width: 110px;
+                /* ancho de la “luz” que recorre el borde */
+                height: 800px;
+                /* alto de la tira (no hace falta cubrir todo) */
+                top: 50%;
+                left: 50%;
+                translate: -50% -50%;
+                transform-origin: top center;
+                /* pivota desde el centro superior */
+                border-radius: var(--ffv-ab-radius);
+
+                /* Degradado estrecho y suave en medio, transparente a los lados */
+                background: linear-gradient(90deg,
+                        rgba(255, 255, 255, 0) 0%,
+                        var(--ffv-ab-color) 50%,
+                        rgba(255, 255, 255, 0) 100%);
+
+                animation: ffv-rotate var(--ffv-ab-speed) linear infinite;
+                pointer-events: none;
+                /* no interfiere con clics */
+                mix-blend-mode: lighten;
+                /* opcional: resalta sobre fondos oscuros */
+            }
+
+            /* Animación de giro continuo */
+            @keyframes ffv-rotate {
+                from {
+                    transform: rotate(0deg);
+                }
+
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+
+            /* Accesibilidad: respeta “reducir movimiento” */
+            @media (prefers-reduced-motion: reduce) {
+                .ffv-ab::before {
+                    animation: none;
+                    opacity: .35;
+                }
+            }
         </style>
 
         <!-- HERO -->
@@ -407,36 +486,48 @@
                     <h2>Programa del día</h2>
                     <a class="btn btn-outline" id="addCal" href="#">Agregar al calendario</a>
                 </div>
-                <div class="card">
-                    <div class="timeline">
-                        <div class="tl-item">
-                            <div class="tl-time">12:00 – 13:00</div>
-                            <div class="tl-title">Desfile de apertura</div>
-                            <p class="muted">Recorrido temático por la ciudad · llegada a zona de stands.</p>
-                        </div>
-                        <div class="tl-item">
-                            <div class="tl-time">13:00 – 18:00</div>
-                            <div class="tl-title">12 Stands temáticos</div>
-                            <p class="muted">Pirámides y Faraón · Mitología · Tarot · Deidades · Libro de los Muertos ·
-                                Música · Autorrealización (Rey Interno) · Justicia Cósmica (Ma’at) · Simbología · Nut e
-                                Isis
-                                · Agricultura · Gnosis.</p>
-                        </div>
-                        <div class="tl-item">
-                            <div class="tl-time">18:00 – 19:00</div>
-                            <div class="tl-title">Conferencia narrativa: Set y Osiris</div>
-                            <p class="muted">Una narración viva sobre arquetipos, juicio y transformación interior.</p>
-                        </div>
-                        <div class="tl-item">
-                            <div class="tl-time">19:30 – 21:00</div>
-                            <div class="tl-title">Obra de teatro (cierre)</div>
-                            <p class="muted">Misterios de la vida y la muerte en escena.</p>
+
+
+
+                <div class="ffv-ab">
+                    <div class="ffv-ab__inner card">
+                        <div>
+                            <div class="timeline">
+                                <div class="tl-item">
+                                    <div class="tl-time">12:00 – 13:00</div>
+                                    <div class="tl-title">Desfile de apertura</div>
+                                    <p class="muted">Recorrido temático por la ciudad · llegada a zona de stands.</p>
+                                </div>
+                                <div class="tl-item">
+                                    <div class="tl-time">13:00 – 18:00</div>
+                                    <div class="tl-title">12 Stands temáticos</div>
+                                    <p class="muted">Pirámides y Faraón · Mitología · Tarot · Deidades · Libro de los
+                                        Muertos ·
+                                        Música · Autorrealización (Rey Interno) · Justicia Cósmica (Ma’at) · Simbología
+                                        · Nut e
+                                        Isis
+                                        · Agricultura · Gnosis.</p>
+                                </div>
+                                <div class="tl-item">
+                                    <div class="tl-time">18:00 – 19:00</div>
+                                    <div class="tl-title">Conferencia narrativa: Set y Osiris</div>
+                                    <p class="muted">Una narración viva sobre arquetipos, juicio y transformación
+                                        interior.</p>
+                                </div>
+                                <div class="tl-item">
+                                    <div class="tl-time">19:30 – 21:00</div>
+                                    <div class="tl-title">Obra de teatro (cierre)</div>
+                                    <p class="muted">Misterios de la vida y la muerte en escena.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+
+
             </div>
         </section>
-
         <!-- STANDS -->
         <section id="stands">
             <div class="wrap">
