@@ -29,7 +29,7 @@
             <div class="bg">
                 <video class="hero-video" src="assets/video/001-Anubis-templo.mp4" autoplay muted loop></video>
             </div>
-            <div class="veil"></div>
+            <!-- <div class="veil"></div> -->
             <div class="wrap content">
                 <div class="image-logo">
                     <img src="assets/img/egipto/logo-festival-flamas.webp" alt="logo festival flamas">
@@ -443,5 +443,344 @@
       </script>
     </div>
 </body>
+
+
+
+
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Badges – HTML + CSS</title>
+    <style>
+        /* ====== Tokens de color (HSL) ====== */
+        :root {
+            --primary: 221 83% 53%;
+            /* Indigo-ish */
+            --success: 142 70% 45%;
+            /* Green */
+            --warning: 38 92% 50%;
+            /* Amber */
+            --danger: 0 72% 51%;
+            /* Red */
+            --neutral: 220 9% 46%;
+            /* Slate-ish */
+        }
+
+        /* ====== Layout de demo (opcional) ====== */
+        body {
+            font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Noto Sans", "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+            margin: 0;
+            background: #0b0b0b;
+            color: #e5e7eb;
+        }
+
+        .wrap {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 16px;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin: 0 0 16px;
+        }
+
+        h2 {
+            font-size: 16px;
+            font-weight: 700;
+            margin: 28px 0 12px;
+            letter-spacing: .2px;
+            color: #cbd5e1;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center
+        }
+
+        .card {
+            border: 1px solid #1f2937;
+            background: #0f172a;
+            border-radius: 16px;
+            padding: 16px;
+        }
+
+        a.badge {
+            text-decoration: none;
+        }
+
+        /* ====== Badge base ====== */
+        .badge {
+            --b: var(--neutral);
+            /* color por defecto */
+            display: inline-flex;
+            align-items: center;
+            gap: .4em;
+            line-height: 1;
+            font-weight: 600;
+            border-radius: 9999px;
+            /* pill */
+            border: 1px solid transparent;
+            padding: .25rem .5rem;
+            /* md por defecto */
+            font-size: .75rem;
+            /* 12px aprox */
+            white-space: nowrap;
+            transition: filter .15s ease, background-color .15s ease, border-color .15s ease, color .15s ease;
+        }
+
+        .badge--sm {
+            font-size: .6875rem;
+            padding: .125rem .4rem;
+        }
+
+        .badge--lg {
+            font-size: .875rem;
+            padding: .375rem .625rem;
+        }
+
+        /* Formas */
+        .badge--rounded {
+            border-radius: .5rem;
+        }
+
+        /* alternativa menos redonda */
+
+        /* Variantes de color (cambian el token --b) */
+        .badge--primary {
+            --b: var(--primary);
+        }
+
+        .badge--success {
+            --b: var(--success);
+        }
+
+        .badge--warning {
+            --b: var(--warning);
+        }
+
+        .badge--danger {
+            --b: var(--danger);
+        }
+
+        .badge--neutral {
+            --b: var(--neutral);
+        }
+
+        /* Estilos visuales */
+        .badge--solid {
+            background-color: hsl(var(--b));
+            color: #fff;
+            border-color: hsl(var(--b));
+        }
+
+        .badge--soft {
+            background-color: hsla(var(--b) / .14);
+            color: hsl(var(--b));
+        }
+
+        .badge--outline {
+            background-color: transparent;
+            color: hsl(var(--b));
+            border-color: hsla(var(--b) / .45);
+        }
+
+        /* Estados hover/focus (para enlaces, botones, etc.) */
+        .badge[href],
+        .badge[role="button"] {
+            cursor: pointer;
+        }
+
+        .badge--solid:hover {
+            filter: brightness(.92);
+        }
+
+        .badge--soft:hover {
+            background-color: hsla(var(--b) / .20);
+        }
+
+        .badge--outline:hover {
+            background-color: hsla(var(--b) / .06);
+        }
+
+        .badge:focus-visible {
+            outline: 3px solid hsla(var(--b) / .35);
+            outline-offset: 2px;
+        }
+
+        /* Partes internas */
+        .badge__dot {
+            width: .45em;
+            height: .45em;
+            border-radius: 9999px;
+            background: currentColor;
+            flex: 0 0 auto;
+        }
+
+        .badge__icon {
+            width: 1.05em;
+            height: 1.05em;
+            display: inline-block;
+            flex: 0 0 auto;
+        }
+
+        .badge__avatar {
+            width: 1.15em;
+            height: 1.15em;
+            border-radius: 9999px;
+            object-fit: cover;
+            flex: 0 0 auto;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, .75);
+        }
+
+        /* Modo claro opcional */
+        @media (prefers-color-scheme: light) {
+            body {
+                background: #fafafa;
+                color: #0f172a;
+            }
+
+            .card {
+                background: #fff;
+                border-color: #e5e7eb;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <h1>Badges – variantes y tamaños</h1>
+
+        <div class="card">
+            <h2>Sólidos</h2>
+            <div class="row">
+                <span class="badge badge--solid badge--primary">Nuevo</span>
+                <span class="badge badge--solid badge--success">Aprobado</span>
+                <span class="badge badge--solid badge--warning">Pendiente</span>
+                <span class="badge badge--solid badge--danger">Error</span>
+                <span class="badge badge--solid badge--neutral">Etiqueta</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Soft</h2>
+            <div class="row">
+                <span class="badge badge--soft badge--primary">Indigo</span>
+                <span class="badge badge--soft badge--success">Éxito</span>
+                <span class="badge badge--soft badge--warning">Aviso</span>
+                <span class="badge badge--soft badge--danger">Alerta</span>
+                <span class="badge badge--soft badge--neutral">Neutro</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Outline</h2>
+            <div class="row">
+                <span class="badge badge--outline badge--primary">Etiqueta</span>
+                <span class="badge badge--outline badge--success">Activo</span>
+                <span class="badge badge--outline badge--warning">Atención</span>
+                <span class="badge badge--outline badge--danger">Crítico</span>
+                <span class="badge badge--outline badge--neutral">Borrador</span>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h2>Con punto</h2>
+                <div class="row">
+                    <span class="badge badge--soft badge--success"><span class="badge__dot"></span> En línea</span>
+                    <span class="badge badge--soft badge--warning"><span class="badge__dot"></span> Procesando</span>
+                    <span class="badge badge--soft badge--danger"><span class="badge__dot"></span> Caído</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Con icono</h2>
+                <div class="row">
+                    <span class="badge badge--soft badge--primary">
+                        <svg class="badge__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path
+                                d="M12 3l3.09 6.26L22 10.27l-5 4.9L18.18 22 12 18.77 5.82 22 7 15.17l-5-4.9 6.91-1.01L12 3Z"
+                                stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+                        </svg>
+                        Destacado
+                    </span>
+                    <span class="badge badge--soft badge--success">
+                        <svg class="badge__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M20 7L9 18l-5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        Verificado
+                    </span>
+                    <span class="badge badge--soft badge--danger">
+                        <svg class="badge__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path
+                                d="M12 9v4m0 4h.01M10.29 3.86L1.82 19a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"
+                                stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        Riesgo
+                    </span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Con avatar</h2>
+                <div class="row">
+                    <span class="badge badge--soft badge--neutral">
+                        <img class="badge__avatar"
+                            src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=60&auto=format&fit=facearea&facepad=2&h=60"
+                            alt="" />
+                        Marta
+                    </span>
+                    <span class="badge badge--soft badge--primary">
+                        <img class="badge__avatar"
+                            src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?q=80&w=60&auto=format&fit=facearea&facepad=2&h=60"
+                            alt="" />
+                        Equipo UX
+                    </span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Tamaños</h2>
+                <div class="row">
+                    <span class="badge badge--outline badge--primary badge--sm">Pequeño</span>
+                    <span class="badge badge--outline badge--primary">Mediano</span>
+                    <span class="badge badge--outline badge--primary badge--lg">Grande</span>
+                </div>
+                <h2 style="margin-top:14px">Forma</h2>
+                <div class="row">
+                    <span class="badge badge--soft badge--success">Pill (default)</span>
+                    <span class="badge badge--soft badge--success badge--rounded">Rounded</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Enlace / Interactivo</h2>
+            <div class="row">
+                <a class="badge badge--soft badge--primary" href="#" aria-label="Ver detalles de la etiqueta">Ver
+                    detalles</a>
+                <a class="badge badge--outline badge--warning" href="#">Configurar</a>
+                <a class="badge badge--solid badge--success" href="#">Listo</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
 
 </html>
