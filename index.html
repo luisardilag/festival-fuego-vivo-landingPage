@@ -10,26 +10,475 @@
         content="Festival del Fuego Vivo, Talca, Egipto, desfile, stands, conferencia, teatro, entrada libre, cultura, arte, historia">
     <meta name="author" content="Gnosis Chile">
     <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Se recomienda usar una fuente como Cinzel para los títulos, si no está ya importada -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
     <link rel="canonical" href="https://www.gnosischile.cl/festivalfuegovivo">
     <meta property="og:title" content="Festival del Fuego Vivo 2025 · Talca">
     <meta property="og:description"
         content="Desfile, 12 stands, conferencia narrativa de Set y Osiris y obra de teatro. Entrada libre y gratuita. Vive la sabiduría del Antiguo Egipto.">
     <title>Festival del Fuego Vivo 2025</title>
+
+    <style>
+        /* ====== RESET GLOBAL & TOKENS ====== */
+        :root {
+            --ffv-bg: #0f0e0e;
+            --ffv-ink: #f8f1e5;
+            --ffv-gold: #d88a1a;
+            --ffv-accent: #e34f1c;
+            --ffv-ink-dim: #d6cec0;
+            --ffv-card: #171515;
+            --ffv-border: #2a2626;
+            --ffv-ab-radius: 16px;
+            --ffv-ab-thickness: 2px;
+            --ffv-ab-speed: 5s;
+            --ffv-ab-color: rgba(216, 138, 26, .85);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background: linear-gradient(to right, #870000, #190a05);
+        }
+
+        body {
+            font-family: 'Roboto', Inter, system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+            color: var(--ffv-ink);
+            background: var(--ffv-bg);
+            margin: 0;
+        }
+
+        .wrap {
+            max-width: 1160px;
+            margin: 0 auto;
+            padding: clamp(1rem, 4vw, 2rem);
+            /* 16px, 3vw, 32px */
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: "Cinzel", Georgia, serif;
+            line-height: 1.15;
+            margin: 0 0 .5em;
+            color: var(--ffv-ink);
+        }
+
+        p {
+            color: var(--ffv-ink-dim);
+            line-height: 1.7;
+            margin: 0 0 1em;
+        }
+
+        img,
+        video {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ====== COMPONENTES REUTILIZABLES ====== */
+        .btn {
+            display: inline-block;
+            background: var(--ffv-gold);
+            color: #1a140a;
+            padding: .9rem 1.1rem;
+            border-radius: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            border: 2px solid transparent;
+            transition: transform .15s ease, box-shadow .15s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, .35);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--ffv-ink);
+            border-color: var(--ffv-border);
+        }
+
+        .muted {
+            color: var(--ffv-ink-dim);
+        }
+
+        .card {
+            background: var(--ffv-card);
+            border: 1px solid var(--ffv-border);
+            border-radius: 16px;
+            padding: clamp(1rem, 2.5vw, 1.5rem);
+            /* 16px, 2.5vw, 24px */
+        }
+
+        /* ====== SISTEMA DE GRID RESPONSIVO MEJORADO ====== */
+        .grid {
+            display: grid;
+            gap: clamp(0.75rem, 2vw, 1.25rem);
+            /* 12px, 2vw, 20px */
+        }
+
+        .grid-2,
+        .grid-3,
+        .grid-4 {
+            grid-template-columns: 1fr;
+            /* Default para móviles */
+        }
+
+        /* Tablets y pantallas medianas */
+        @media (min-width: 768px) {
+            .grid-2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .grid-3 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Escritorios */
+        @media (min-width: 1024px) {
+            .grid-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .grid-4 {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* ====== HERO ====== */
+        .hero {
+            position: relative;
+            isolation: isolate;
+            min-height: 72vh;
+            display: grid;
+            place-items: center;
+            /* Centrado para mejor visualización */
+            text-align: center;
+            background: radial-gradient(circle at 50% 50%, rgba(227, 79, 28, .15), transparent 70%), #0e0d0b;
+            overflow: hidden;
+            border-bottom: 1px solid var(--ffv-border);
+        }
+
+        .hero .bg {
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            background-size: cover;
+            background-position: center;
+            /* Imagen de fondo como fallback para el video */
+            background-image: url('assets/img/egipto/landing-001.webp');
+        }
+
+        .hero .hero-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: saturate(1.15) contrast(1.05) brightness(.95);
+        }
+
+        .hero .veil {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: linear-gradient(to top, rgba(15, 14, 14, 0.95) 10%, transparent 50%);
+        }
+
+        .hero .content {
+            padding: clamp(1.5rem, 5vw, 3rem);
+            /* 24px, 5vw, 48px */
+        }
+
+        .hero .image-logo img {
+            width: clamp(8rem, 15vw, 12rem);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+        }
+
+        .kicker {
+            color: var(--ffv-gold);
+            font-weight: 700;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+        }
+
+        .title {
+            font-size: clamp(2rem, 5.2vw, 3.75rem);
+            /* 32px, 5.2vw, 60px */
+            text-wrap: balance;
+        }
+
+        .subtitle {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            /* 16px, 2vw, 20px */
+            color: var(--ffv-ink-dim);
+            margin-bottom: 1.5rem;
+            max-width: 650px;
+            /* Limita el ancho para mejor legibilidad */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .facts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 16px;
+            margin: .25rem 0 1.5rem;
+            justify-content: center;
+        }
+
+        .fact {
+            background: rgba(216, 138, 26, .09);
+            border: 1px solid var(--ffv-border);
+            border-radius: 10px;
+            padding: .45rem .7rem;
+            font-size: 0.9rem;
+        }
+
+        .cta {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .timer {
+            margin-top: 2rem;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .timer .box {
+            background: #120f0d;
+            border: 1px solid var(--ffv-border);
+            border-radius: 12px;
+            padding: .6rem .8rem;
+            min-width: 70px;
+            text-align: center;
+        }
+
+        .timer .box b {
+            font-size: 1.2rem;
+            color: var(--ffv-gold);
+            display: block;
+        }
+
+        .badges {
+            margin-top: 2rem;
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .badges img {
+            height: 3rem;
+            /* Ligeramente más pequeño para mejor balance */
+            object-fit: contain;
+            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .4));
+        }
+
+        /* ====== SECCIONES GENERALES ====== */
+        section {
+            padding: clamp(2rem, 6vw, 4rem) 0;
+        }
+
+        .section-head {
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        /* ====== TIMELINE ====== */
+        .timeline {
+            position: relative;
+            padding-left: 18px;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 6px;
+            bottom: 6px;
+            width: 3px;
+            background: linear-gradient(var(--ffv-gold), transparent);
+            border-radius: 3px;
+        }
+
+        .tl-item {
+            position: relative;
+            margin-bottom: 1rem;
+            padding-left: 12px;
+        }
+
+        .tl-item::before {
+            content: "";
+            position: absolute;
+            left: -7px;
+            top: 10px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--ffv-gold);
+            box-shadow: 0 0 0 3px rgba(216, 138, 26, .25);
+        }
+
+        .tl-title {
+            font-weight: 800;
+            color: var(--ffv-ink);
+        }
+
+        .tl-time {
+            color: var(--ffv-ink-dim);
+            font-size: .95rem;
+            margin-bottom: .25rem;
+        }
+
+        /* ====== STANDS GRID ====== */
+        .stand {
+            background: #141211;
+            border: 1px solid var(--ffv-border);
+            border-radius: 14px;
+            padding: 14px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .stand img {
+            width: 48px;
+            height: 48px;
+            object-fit: cover;
+            border-radius: 10px;
+            flex-shrink: 0;
+            border: 1px solid var(--ffv-border);
+        }
+
+        .stand h4 {
+            margin: .1rem 0;
+            font-size: 1.05rem;
+        }
+
+        .stand p {
+            margin: 0;
+            font-size: .95rem;
+        }
+
+        /* ====== INFO + FAQ ====== */
+        details {
+            background: #141211;
+            border: 1px solid var(--ffv-border);
+            border-radius: 14px;
+            padding: 14px 16px;
+        }
+
+        summary {
+            cursor: pointer;
+            font-weight: 700;
+            color: var(--ffv-ink);
+        }
+
+        /* ====== FOOTER ====== */
+        .foot {
+            border-top: 1px solid var(--ffv-border);
+            padding: 1rem 0 2rem;
+            text-align: center;
+            color: var(--ffv-ink-dim);
+        }
+
+        /* ===== BORDE ANIMADO (GLIMMER) ===== */
+        .ffv-ab {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--ffv-ab-radius);
+            isolation: isolate;
+        }
+
+        .ffv-ab__inner {
+            position: relative;
+            z-index: 1;
+            border-radius: inherit;
+            margin: var(--ffv-ab-thickness);
+            background: #141211;
+        }
+
+        .ffv-ab::before {
+            content: "";
+            position: absolute;
+            z-index: 0;
+            width: 110px;
+            height: 800px;
+            top: 50%;
+            left: 50%;
+            translate: -50% -50%;
+            transform-origin: top center;
+            border-radius: var(--ffv-ab-radius);
+            background: linear-gradient(90deg, transparent 0%, var(--ffv-ab-color) 50%, transparent 100%);
+            animation: ffv-rotate var(--ffv-ab-speed) linear infinite;
+            pointer-events: none;
+            mix-blend-mode: lighten;
+        }
+
+        @keyframes ffv-rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ====== OPTIMIZACIONES Y MEDIA QUERIES FINALES ====== */
+
+        /* Ocultar video en móviles para mejorar rendimiento */
+        @media (max-width: 768px) {
+            .hero-video {
+                display: none;
+            }
+        }
+
+        /* Accesibilidad: respeta “reducir movimiento” */
+        @media (prefers-reduced-motion: reduce) {
+            .ffv-ab::before {
+                animation: none;
+                opacity: .35;
+            }
+
+            .btn:hover {
+                transform: none;
+                box-shadow: none;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <!-- FESTIVAL DEL FUEGO VIVO · LANDING -->
+    <!-- El ID se mantiene como ancla para posibles scripts, pero no se usa para estilos -->
     <div id="ffv-landing" class="ffv">
         <!-- HERO -->
         <section class="hero" id="hero">
             <div class="bg">
-                <video class="hero-video" src="assets/video/001-Anubis-templo.mp4" autoplay muted loop></video>
+                <video class="hero-video" src="assets/video/001-Anubis-templo.mp4" autoplay muted loop
+                    poster="assets/img/egipto/landing-001.webp"></video>
             </div>
-            <!-- <div class="veil"></div> -->
+            <div class="veil"></div>
             <div class="wrap content">
                 <div class="image-logo">
                     <img src="assets/img/egipto/logo-festival-flamas.webp" alt="logo festival flamas">
@@ -37,12 +486,8 @@
                 <div class="kicker">Entrada libre · 01 de noviembre · Talca</div>
                 <h1 class="title">Festival del Fuego Vivo · Talca 2025</h1>
                 <p class="subtitle">Desfile · 12 Stands · Conferencia · Teatro · Un día para vivir la sabiduría del
-                    Antiguo
-                    Egipto.</p>
+                    Antiguo Egipto.</p>
                 <div class="facts">
-                    <!-- <span class="badge badge--soft badge--warning"><span class="badge__dot"></span> Sábado 01/Nov ·
-                        12:00
-                        a 21:00</span> -->
                     <span class="fact">Sábado 01/Nov · 12:00 a 21:00</span>
                     <span class="fact">Ciudad de Talca</span>
                     <span class="fact">Apto para todo público</span>
@@ -57,15 +502,10 @@
                     <div class="box"><b id="ffv-m">–</b><span>Min</span></div>
                     <div class="box"><b id="ffv-s">–</b><span>Seg</span></div>
                 </div>
-                <div class="badges" style="margin-top:2rem;">
-                    <!-- Sustituir por rutas reales -->
-                    <!-- TODO: Reemplazar con logos reales -->
+                <div class="badges">
                     <img src="assets/img/gnosis-chile-1.webp" alt="Gnosis Chile">
-                    <img src="assets/img/juventudes-gnosticas-logo.webp" alt="Gnosis Chile">
+                    <img src="assets/img/juventudes-gnosticas-logo.webp" alt="Juventudes Gnosticas">
                     <img src="assets/img/festival-fuego-vivo-logo--blanco.webp" alt="Festival del Fuego Vivo">
-
-                    <!-- <img src="/wp-content/uploads/ffv/logo-festival.webp" alt="Festival del Fuego Vivo">
-                    <img src="/wp-content/uploads/ffv/logo-gnosis.webp" alt="Gnosis Chile"> -->
                 </div>
             </div>
         </section>
@@ -76,26 +516,20 @@
                 <div class="card">
                     <h2>¿Qué es el Festival?</h2>
                     <p>El Festival del Fuego Vivo es una jornada cultural gratuita que acerca al público la sabiduría
-                        del
-                        Antiguo Egipto a través del arte, la reflexión y la gnosis práctica. Desfile, 12 stands,
-                        conferencia
-                        y teatro en un mismo día.</p>
+                        del Antiguo Egipto a través del arte, la reflexión y la gnosis práctica. Desfile, 12 stands,
+                        conferencia y teatro en un mismo día.</p>
                     <p class="muted">Para todo público: familias, estudiantes, amantes del arte y la historia.</p>
                     <div class="cta">
                         <a href="#form" class="btn">Confirmar asistencia</a>
                         <a href="#stands" class="btn btn-outline">Ver los 12 stands</a>
                     </div>
                 </div>
-                <div class="card" style="display:grid;place-items:center;">
-                    <!-- Reemplaza por tu video (YouTube embed o MP4 propio) -->
-                    <div
-                        style="width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden;border:1px solid var(--ffv-border);">
-                        <iframe width="560" height="315"
-                            src="https://www.youtube-nocookie.com/embed/o9tXe_4Foek?si=MrTXwYzI9rVAkeiW&amp;controls=0"
-                            title="YouTube video player" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
+                <div class="card" style="padding: 0; overflow: hidden;">
+                    <iframe style="width:100%; aspect-ratio: 16/9; border: 0;"
+                        src="https://www.youtube-nocookie.com/embed/o9tXe_4Foek?si=MrTXwYzI9rVAkeiW&amp;controls=0"
+                        title="YouTube video player"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
             </div>
         </section>
@@ -109,34 +543,29 @@
                 </div>
                 <div class="ffv-ab">
                     <div class="ffv-ab__inner card">
-                        <div>
-                            <div class="timeline">
-                                <div class="tl-item">
-                                    <div class="tl-time">12:00 – 13:00</div>
-                                    <div class="tl-title">Desfile de apertura</div>
-                                    <p class="muted">Recorrido temático por la ciudad · llegada a zona de stands.</p>
-                                </div>
-                                <div class="tl-item">
-                                    <div class="tl-time">13:00 – 18:00</div>
-                                    <div class="tl-title">12 Stands temáticos</div>
-                                    <p class="muted">Pirámides y Faraón · Mitología · Tarot · Deidades · Libro de los
-                                        Muertos ·
-                                        Música · Autorrealización (Rey Interno) · Justicia Cósmica (Ma’at) · Simbología
-                                        · Nut e
-                                        Isis
-                                        · Agricultura · Gnosis.</p>
-                                </div>
-                                <div class="tl-item">
-                                    <div class="tl-time">18:00 – 19:00</div>
-                                    <div class="tl-title">Conferencia narrativa: Set y Osiris</div>
-                                    <p class="muted">Una narración viva sobre arquetipos, juicio y transformación
-                                        interior.</p>
-                                </div>
-                                <div class="tl-item">
-                                    <div class="tl-time">19:30 – 21:00</div>
-                                    <div class="tl-title">Obra de teatro (cierre)</div>
-                                    <p class="muted">Misterios de la vida y la muerte en escena.</p>
-                                </div>
+                        <div class="timeline">
+                            <div class="tl-item">
+                                <div class="tl-time">12:00 – 13:00</div>
+                                <div class="tl-title">Desfile de apertura</div>
+                                <p class="muted">Recorrido temático por la ciudad · llegada a zona de stands.</p>
+                            </div>
+                            <div class="tl-item">
+                                <div class="tl-time">13:00 – 18:00</div>
+                                <div class="tl-title">12 Stands temáticos</div>
+                                <p class="muted">Pirámides y Faraón · Mitología · Tarot · Deidades · Libro de los
+                                    Muertos · Música · Autorrealización (Rey Interno) · Justicia Cósmica (Ma’at) ·
+                                    Simbología · Nut e Isis · Agricultura · Gnosis.</p>
+                            </div>
+                            <div class="tl-item">
+                                <div class="tl-time">18:00 – 19:00</div>
+                                <div class="tl-title">Conferencia narrativa: Set y Osiris</div>
+                                <p class="muted">Una narración viva sobre arquetipos, juicio y transformación interior.
+                                </p>
+                            </div>
+                            <div class="tl-item">
+                                <div class="tl-time">19:30 – 21:00</div>
+                                <div class="tl-title">Obra de teatro (cierre)</div>
+                                <p class="muted">Misterios de la vida y la muerte en escena.</p>
                             </div>
                         </div>
                     </div>
@@ -148,8 +577,7 @@
         <section id="stands">
             <div class="wrap">
                 <h2>Los 12 Stands</h2>
-                <div class="grid grid-3" style="margin-top:12px;">
-                    <!-- Repite tarjetas; reemplaza imágenes -->
+                <div class="grid grid-3">
                     <div class="stand"><img src="assets/img/stands/01-piramides-faraon.webp"
                             alt="festival fuego vivo piramides">
                         <div>
@@ -241,31 +669,24 @@
         <section id="destacados">
             <div class="wrap grid grid-2">
                 <div class="card">
-                    <div>
-                        <img src="assets/img/egipto/Isis-y-su-hijo-horus-festival-fuego-vivo.webp" alt="isis y horus"
-                            style="width:100%;aspect-ratio:16/9;border-radius:12px;object-fit:cover;border:1px solid var(--ffv-border);">
-                    </div>
+                    <img src="assets/img/egipto/Isis-y-su-hijo-horus-festival-fuego-vivo.webp" alt="isis y horus"
+                        style="width:100%; aspect-ratio:16/9; border-radius:12px; object-fit:cover; border:1px solid var(--ffv-border); margin-bottom: 1rem;">
                     <h2>Conferencia: Set y Osiris</h2>
                     <p>Una narración viva para comprender arquetipos de muerte, desmembramiento y resurrección; la
-                        victoria
-                        de Horus y el juicio de Osiris como claves de transformación interior.</p>
+                        victoria de Horus y el juicio de Osiris como claves de transformación interior.</p>
                     <p class="muted">18:00 – 19:00 · Talca</p>
                     <a href="#form" class="btn">Reservar mi lugar (gratis)</a>
                 </div>
                 <div class="card">
-
-                    <div>
-                        <img src="assets/img/egipto/obra-teatro-festival-fuego-vivo.webp" alt="obra teatro"
-                            style="width:100%;aspect-ratio:16/9;border-radius:12px;object-fit:cover;border:1px solid var(--ffv-border);">
-                    </div>
+                    <img src="assets/img/egipto/obra-teatro-festival-fuego-vivo.webp" alt="obra teatro"
+                        style="width:100%; aspect-ratio:16/9; border-radius:12px; object-fit:cover; border:1px solid var(--ffv-border); margin-bottom: 1rem;">
                     <h2>Obra de teatro (cierre)</h2>
                     <p>Una obra magistral de los misterios de la Vida y de la Muerte que invita al asombro y al
-                        autoconocimiento a través de símbolos, música y
-                        puesta en escena.</p>
+                        autoconocimiento a través de símbolos, música y puesta en escena.</p>
                     <p class="muted">19:30 – 21:00 · Talca</p>
                     <a href="#form" class="btn btn-outline">Asistir al cierre</a>
-
                 </div>
+            </div>
         </section>
 
         <!-- INFO PRÁCTICA -->
@@ -293,21 +714,22 @@
                 </div>
                 <div class="card">
                     <h2>Mapa</h2>
-                    <!-- Reemplaza el src del mapa cuando esté confirmado -->
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3250.7596521211785!2d-71.6639673632063!3d-35.435983462427835!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9665c7d011d64d4f%3A0xd605240a3e23c297!2sAnfiteatro%20Parque%20Costanera!5e0!3m2!1ses-419!2scl!4v1755739297124!5m2!1ses-419!2scl"
-                        width="100%" height="450" style="border:0; border-radius: 3%;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        width="100%" height="350" style="border:0; border-radius: 12px;" allowfullscreen=""
+                        loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </section>
 
         <!-- FORMULARIO -->
         <section id="form">
-            <div class="wrap">
+            <div class="wrap" style="max-width: 700px; text-align: center;">
                 <div class="card">
                     <h2>Confirma tu asistencia</h2>
-
+                    <p>¡Asegura tu lugar en esta jornada única! El registro es gratuito y nos ayuda a organizar mejor el
+                        evento.</p>
+                    <!-- Aquí iría tu formulario de registro -->
                 </div>
             </div>
         </section>
@@ -318,48 +740,31 @@
                 <div class="card">
                     <h2>Síguenos</h2>
                     <p>Facebook · Instagram · YouTube: <b>@festivalFuegovivoChile</b></p>
-                    <div class="badges">
+                    <div class="cta">
                         <a class="btn btn-outline" href="https://facebook.com/festivalFuegovivoChile" target="_blank"
-                            rel="noopener" style="display: flex; align-items: center; gap: 8px;">
-                            <span>
-                                <img src="assets/img/logos/facebook.webp" alt="facebbook" width="16" height="16">
-                            </span>
-                            Facebook
-                        </a>
+                            rel="noopener">Facebook</a>
                         <a class="btn btn-outline" href="https://instagram.com/festivalFuegovivoChile" target="_blank"
-                            rel="noopener" style="display: flex; align-items: center; gap: 8px;">
-                            <span>
-                                <img src="assets/img/logos/instagram.webp" alt="instagram" width="16" height="16">
-                            </span>
-                            Instagram</a>
+                            rel="noopener">Instagram</a>
                         <a class="btn btn-outline" href="https://youtube.com/@festivalFuegovivoChile" target="_blank"
-                            rel="noopener" style="display: flex; align-items: center; gap: 8px;">
-                            <span>
-                                <img src="assets/img/logos/youtube.webp" alt="youtube" width="16" height="16">
-                            </span>
-                            YouTube</a>
+                            rel="noopener">YouTube</a>
                     </div>
                 </div>
                 <div class="card">
                     <h2>Organiza</h2>
                     <p>Asociación Cultural de Estudios Gnósticos de Chile.</p>
                     <div class="badges" aria-label="Logos organizadores">
-                        <img src="assets/img/gnosis-chile-1.webp" alt="Gnosis Chile"
-                            style="max-width:100%;height:auto;display:block;">
+                        <img src="assets/img/gnosis-chile-1.webp" alt="Gnosis Chile">
                         <img src="assets/img/festival-fuego-vivo-logo--blanco.webp" alt="Festival del Fuego Vivo">
-                        <img src="assets/img/juventudes-gnosticas-logo.webp" alt="Gnosis Chile">
-                        <!-- <img src="/wp-content/uploads/ffv/logo-gnosis.webp" alt="Gnosis Chile">
-                        <img src="/wp-content/uploads/ffv/logo-festival.webp" alt="Festival del Fuego Vivo"> -->
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="foot">
+        <footer class="foot">
             <div class="wrap">
                 <small>© Festival del Fuego Vivo 2025 · Gnosis Chile · Talca</small>
             </div>
-        </section>
+        </footer>
 
         <!-- SCRIPTS -->
         <script>
@@ -380,9 +785,14 @@
                     const mm = Math.floor(delta / (1000 * 60));
                     delta -= mm * (1000 * 60);
                     const ss = Math.floor(delta / 1000);
-                    d.textContent = dd; h.textContent = ('0' + hh).slice(-2); m.textContent = ('0' + mm).slice(-2); s.textContent = ('0' + ss).slice(-2);
+                    if (d) d.textContent = dd;
+                    if (h) h.textContent = ('0' + hh).slice(-2);
+                    if (m) m.textContent = ('0' + mm).slice(-2);
+                    if (s) s.textContent = ('0' + ss).slice(-2);
                 }
-                tick(); setInterval(tick, 1000);
+                const interval = setInterval(tick, 1000);
+                if (target - Date.now() < 0) clearInterval(interval);
+                tick();
             })();
 
             // ====== Add to Calendar (ICS dinámico) ======
@@ -391,18 +801,15 @@
                 if (!btn) return;
                 btn.addEventListener('click', function (e) {
                     e.preventDefault();
-                    // Evento: 01/11/2025 12:00–21:00 (UTC-3)
-                    const dtStart = '20251101T120000-0300';
-                    const dtEnd = '20251101T210000-0300';
+                    const dtStart = '20251101T150000Z'; // 12:00 UTC-3
+                    const dtEnd = '20261102T000000Z';   // 21:00 UTC-3
                     const ics = [
                         'BEGIN:VCALENDAR',
                         'VERSION:2.0',
                         'PRODID:-//Festival del Fuego Vivo//ES',
-                        'CALSCALE:GREGORIAN',
-                        'METHOD:PUBLISH',
                         'BEGIN:VEVENT',
                         'UID:ffv-2025-talca@gnosischile.cl',
-                        'DTSTAMP:' + new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z',
+                        'DTSTAMP:' + new Date().toISOString().replace(/[-:.]/g, ''),
                         'DTSTART:' + dtStart,
                         'DTEND:' + dtEnd,
                         'SUMMARY:Festival del Fuego Vivo · Talca',
