@@ -3,6 +3,12 @@ html {
     background: linear-gradient(to right, #870000, #190a05);
 }
 
+body {
+    margin: 0;
+    padding: .6rem .7rem;
+    font-size: 16px;
+}
+
 /* ====== RESET LOCAL & TOKENS ====== */
 #ffv-landing {
     --ffv-bg: #0f0e0e;
@@ -20,7 +26,7 @@ html {
 #ffv-landing .wrap {
     max-width: 1160px;
     margin: 0 auto;
-    padding: clamp(16px, 3vw, 32px);
+    /* padding: 1rem; */
 }
 
 #ffv-landing h1,
@@ -103,10 +109,11 @@ h3 {
     position: relative;
     isolation: isolate;
     min-height: 72vh;
-    display: grid;
+    padding: 0.5rem 1rem;
+    /* display: flex; */
     place-items: end;
     background: radial-gradient(80% 80% at 50% 20%, rgba(227, 79, 28, .25), transparent 60%), #0e0d0b;
-    overflow: hidden;
+    /* overflow: hidden; */
     border-bottom: 1px solid var(--ffv-border);
 }
 
@@ -129,7 +136,7 @@ h3 {
 }
 
 #ffv-landing .hero .content {
-    padding: clamp(24px, 5vw, 48px);
+    /* padding: clamp(24px, 5vw, 48px); */
     text-align: left;
 }
 
@@ -138,10 +145,13 @@ h3 {
     font-weight: 700;
     letter-spacing: .06em;
     text-transform: uppercase;
+    width: 100dvw;
+    padding: 1rem 0;
 }
 
 #ffv-landing .title {
-    font-size: clamp(32px, 5.2vw, 60px);
+    width: 100dvw;
+    font-size: clamp(32px, 5dvw, 60px);
     text-wrap: balance;
 }
 
@@ -149,6 +159,7 @@ h3 {
     font-size: clamp(16px, 2vw, 20px);
     color: var(--ffv-ink-dim);
     margin-bottom: 1rem;
+    width: 100dvw;
 }
 
 #ffv-landing .facts {
@@ -176,6 +187,7 @@ h3 {
     margin-top: 1rem;
     display: flex;
     gap: 10px;
+    flex-wrap: wrap;
 }
 
 #ffv-landing .timer .box {
@@ -183,7 +195,7 @@ h3 {
     border: 1px solid var(--ffv-border);
     border-radius: 12px;
     padding: .6rem .8rem;
-    min-width: 82px;
+    min-width: 64px;
     text-align: center;
 }
 
@@ -401,7 +413,7 @@ h3 {
 }
 
 .image-logo img {
-    width: 12rem;
+    width: 30%;
     border-radius: 50%;
 }
 
