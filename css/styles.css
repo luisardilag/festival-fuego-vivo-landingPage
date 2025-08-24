@@ -1,16 +1,10 @@
-html {
-    background: black;
-    background: linear-gradient(to right, #870000, #190a05);
-}
+/* ==========================================================================
+   FESTIVAL FUEGO VIVO - STYLES RESPONSIVE
+   ========================================================================== */
 
-body {
-    margin: 0;
-    padding: .6rem .7rem;
-    font-size: 16px;
-}
-
-/* ====== RESET LOCAL & TOKENS ====== */
-#ffv-landing {
+/* ====== VARIABLES Y CONFIGURACIÓN GLOBAL ====== */
+:root {
+    /* Paleta de colores */
     --ffv-bg: #0f0e0e;
     --ffv-ink: #f8f1e5;
     --ffv-gold: #d88a1a;
@@ -18,179 +12,290 @@ body {
     --ffv-ink-dim: #d6cec0;
     --ffv-card: #171515;
     --ffv-border: #2a2626;
-    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+    /* Tipografía */
+    --font-body: 'Roboto', Inter, system-ui, -apple-system, sans-serif;
+    --font-heading: "Cinzel", Georgia, serif;
+
+    /* Animación borde */
+    --ffv-ab-radius: 16px;
+    --ffv-ab-thickness: 2px;
+    --ffv-ab-speed: 5s;
+    --ffv-ab-color: rgba(216, 138, 26, .85);
+}
+
+/* ====== RESET Y ESTILOS BASE ====== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    /* Tipografía fluida: se adapta al tamaño de la pantalla */
+    font-size: clamp(16px, 1.5vw + 0.5rem, 18px);
+    scroll-behavior: smooth;
+    background: black;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-body);
     color: var(--ffv-ink);
     background: var(--ffv-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-#ffv-landing .wrap {
+#ffv-landing {
+    /* Gradiente de fondo que estaba en el HTML */
+    background: linear-gradient(to right, #870000, #190a05);
+}
+
+/* Contenedor principal con espaciado lateral responsivo */
+.wrap {
     max-width: 1160px;
-    margin: 0 auto;
-    /* padding: 1rem; */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: clamp(1rem, 5vw, 2rem);
+    padding-right: clamp(1rem, 5vw, 2rem);
 }
 
-#ffv-landing h1,
+/* Espaciado vertical fluido entre secciones */
+section {
+    padding-top: clamp(2.5rem, 8vw, 5rem);
+    padding-bottom: clamp(2.5rem, 8vw, 5rem);
+}
+
+h1,
 h2,
-h3 {
-    font-family: "Cinzel", Georgia, serif;
-    line-height: 1.15;
+h3,
+h4 {
+    font-family: var(--font-heading);
+    line-height: 1.2;
     margin: 0 0 .5em;
     color: var(--ffv-ink);
+    text-wrap: balance;
+    /* Evita líneas sueltas en títulos */
 }
 
-#ffv-landing p {
+p {
     color: var(--ffv-ink-dim);
     line-height: 1.7;
     margin: 0 0 1em;
+    max-width: 65ch;
+    /* Mejora la legibilidad */
 }
 
-#ffv-landing .btn {
-    display: inline-block;
+a {
+    color: var(--ffv-gold);
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ====== COMPONENTES REUTILIZABLES ====== */
+.btn {
+    display: inline-flex;
+    /* Usamos flex para alinear iconos fácilmente */
+    align-items: center;
+    gap: 0.5rem;
     background: var(--ffv-gold);
     color: #1a140a;
-    padding: .9rem 1.1rem;
+    padding: .9rem 1.2rem;
     border-radius: 12px;
     font-weight: 700;
     text-decoration: none;
     border: 2px solid transparent;
     transition: transform .15s ease, box-shadow .15s ease;
+    cursor: pointer;
 }
 
-#ffv-landing .btn:hover {
-    transform: translateY(-1px);
+.btn:hover {
+    transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(0, 0, 0, .35);
 }
 
-#ffv-landing .btn-outline {
+.btn-outline {
     background: transparent;
     color: var(--ffv-ink);
     border-color: var(--ffv-border);
 }
 
-#ffv-landing .muted {
+.muted {
     color: var(--ffv-ink-dim);
+    font-size: 0.9rem;
 }
 
-#ffv-landing .card {
+.card {
     background: var(--ffv-card);
     border: 1px solid var(--ffv-border);
     border-radius: 16px;
-    padding: clamp(16px, 2.5vw, 24px);
+    padding: clamp(1rem, 4vw, 1.5rem);
 }
 
-#ffv-landing .grid {
+.card--embed {
+    padding: 0;
+    overflow: hidden;
+    /* Asegura que el contenido respete el borde redondeado */
+    display: flex;
+    flex-direction: column;
+}
+
+.card--embed h2 {
+    padding: 1.5rem 1.5rem 0;
+}
+
+.card-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 1px solid var(--ffv-border);
+    margin-bottom: 1rem;
+}
+
+/* Sistema de Grid Responsivo */
+.grid {
     display: grid;
-    gap: clamp(12px, 2vw, 20px);
+    gap: clamp(1rem, 4vw, 1.5rem);
 }
 
-#ffv-landing .grid-2 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+.grid-2 {
+    grid-template-columns: 1fr;
 }
 
-#ffv-landing .grid-3 {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+.grid-3 {
+    grid-template-columns: 1fr;
 }
 
-#ffv-landing .grid-4 {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-}
+/* Tablet y superior */
+@media (min-width: 768px) {
+    .grid-2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
 
-@media (max-width: 960px) {
-
-    #ffv-landing .grid-2,
-    #ffv-landing .grid-3,
-    #ffv-landing .grid-4 {
-        grid-template-columns: 1fr;
+    .grid-3 {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
+/* Desktop y superior */
+@media (min-width: 1024px) {
+    .grid-3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
 /* ====== HERO ====== */
-#ffv-landing .hero {
+.hero {
     position: relative;
-    isolation: isolate;
-    min-height: 72vh;
-    padding: 0.5rem 1rem;
-    /* display: flex; */
-    place-items: end;
-    background: radial-gradient(80% 80% at 50% 20%, rgba(227, 79, 28, .25), transparent 60%), #0e0d0b;
-    /* overflow: hidden; */
+    min-height: 95vh;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
     border-bottom: 1px solid var(--ffv-border);
 }
 
-#ffv-landing .hero .bg {
+.hero .bg {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+}
+
+.hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* La clave para que el video siempre cubra el área */
+}
+
+.hero .veil {
     position: absolute;
     inset: 0;
     z-index: -1;
-    opacity: .85;
-    background-size: cover;
-    background-position: center;
-    /* background-image: image-set(url('/wp-content/uploads/ffv/hero-1920.webp') type('image/webp') 1x); */
-    /* background-image: image-set(url('assets/img/egipto/landing-001.webp') type('image/webp') 1x); */
-    filter: saturate(1.15) contrast(1.05) brightness(.95);
+    background: linear-gradient(to top, rgba(15, 14, 14, 1) 5%, transparent 50%),
+        radial-gradient(circle, transparent, var(--ffv-bg) 90%);
 }
 
-#ffv-landing .hero .veil {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(15, 14, 14, .85), rgba(15, 14, 14, .25));
+.hero .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-#ffv-landing .hero .content {
-    /* padding: clamp(24px, 5vw, 48px); */
-    text-align: left;
+.image-logo img {
+    width: clamp(100px, 20vw, 150px);
+    border-radius: 50%;
+    margin-bottom: 1rem;
 }
 
-#ffv-landing .kicker {
+.kicker {
     color: var(--ffv-gold);
     font-weight: 700;
     letter-spacing: .06em;
     text-transform: uppercase;
-    width: 100dvw;
-    padding: 1rem 0;
-}
-
-#ffv-landing .title {
-    width: 100dvw;
-    font-size: clamp(32px, 5dvw, 60px);
-    text-wrap: balance;
-}
-
-#ffv-landing .subtitle {
-    font-size: clamp(16px, 2vw, 20px);
-    color: var(--ffv-ink-dim);
     margin-bottom: 1rem;
-    width: 100dvw;
 }
 
-#ffv-landing .facts {
+.title {
+    font-size: clamp(2rem, 6vw, 3.75rem);
+    max-width: 20ch;
+}
+
+.subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: var(--ffv-ink-dim);
+    margin-bottom: 1.5rem;
+    max-width: 50ch;
+}
+
+.facts {
     display: flex;
     flex-wrap: wrap;
     gap: 10px 16px;
-    margin: .25rem 0 1.2rem;
+    margin-bottom: 1.5rem;
+    justify-content: center;
 }
 
-#ffv-landing .fact {
+.fact {
     background: rgba(216, 138, 26, .09);
     border: 1px solid var(--ffv-border);
     border-radius: 10px;
     padding: .45rem .7rem;
+    font-size: 0.9rem;
 }
 
-#ffv-landing .cta {
+.cta {
     display: flex;
     gap: 12px;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
 }
 
-#ffv-landing .timer {
-    margin-top: 1rem;
+.timer {
+    margin-top: 2rem;
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
-#ffv-landing .timer .box {
+.timer .box {
     background: #120f0d;
     border: 1px solid var(--ffv-border);
     border-radius: 12px;
@@ -199,32 +304,49 @@ h3 {
     text-align: center;
 }
 
-#ffv-landing .timer .box b {
+.timer .box b {
     font-size: 1.2rem;
     color: var(--ffv-gold);
     display: block;
 }
 
-/* ====== SECTION HEAD ====== */
-#ffv-landing .section-head {
-    margin: 32px 0 18px;
+.hero .badges {
+    margin-top: 2rem;
+}
+
+/* Mejora de performance: Ocultar video en móviles y mostrar una imagen de fondo */
+@media (max-width: 768px) {
+    .hero-video {
+        /* display: none; */
+        /* Descomenta para ocultar el video */
+    }
+
+    .hero .bg {
+        /* background-image: url('../img/hero-fallback.webp'); */
+        /* Descomenta para añadir imagen */
+        background-size: cover;
+        background-position: center;
+    }
+}
+
+
+/* ====== CABECERA DE SECCIÓN ====== */
+.section-head {
+    margin-bottom: 2rem;
     display: flex;
-    align-items: end;
+    flex-wrap: wrap;
+    align-items: flex-end;
     justify-content: space-between;
-    gap: 16px;
+    gap: 1rem;
 }
 
-#ffv-landing .section-head p {
-    margin: 0;
-}
-
-/* ====== TIMELINE ====== */
-#ffv-landing .timeline {
+/* ====== PROGRAMA Y TIMELINE ====== */
+.timeline {
     position: relative;
     padding-left: 18px;
 }
 
-#ffv-landing .timeline::before {
+.timeline::before {
     content: "";
     position: absolute;
     left: 0;
@@ -235,13 +357,13 @@ h3 {
     border-radius: 3px;
 }
 
-#ffv-landing .tl-item {
+.tl-item {
     position: relative;
     margin-bottom: 16px;
     padding-left: 12px;
 }
 
-#ffv-landing .tl-item::before {
+.tl-item::before {
     content: "";
     position: absolute;
     left: -7px;
@@ -253,19 +375,19 @@ h3 {
     box-shadow: 0 0 0 3px rgba(216, 138, 26, .25);
 }
 
-#ffv-landing .tl-title {
-    font-weight: 800;
+.tl-title {
+    font-weight: 700;
     color: var(--ffv-ink);
 }
 
-#ffv-landing .tl-time {
+.tl-time {
     color: var(--ffv-ink-dim);
     font-size: .95rem;
     margin-bottom: .25rem;
 }
 
-/* ====== STANDS GRID ====== */
-#ffv-landing .stand {
+/* ====== STANDS ====== */
+.stand {
     background: #141211;
     border: 1px solid var(--ffv-border);
     border-radius: 14px;
@@ -275,149 +397,170 @@ h3 {
     align-items: center;
 }
 
-#ffv-landing .stand img {
+.stand img {
     width: 48px;
     height: 48px;
     object-fit: cover;
     border-radius: 10px;
     border: 1px solid var(--ffv-border);
+    flex-shrink: 0;
 }
 
-#ffv-landing .stand h4 {
-    margin: .1rem 0;
+.stand h4 {
+    margin: 0;
     font-size: 1.05rem;
 }
 
-#ffv-landing .stand p {
+.stand p {
     margin: 0;
     font-size: .95rem;
 }
 
-/* ====== INFO + FAQ ====== */
-#ffv-landing details {
+
+/* ====== INFO Y FAQ ====== */
+.faq-grid {
+    margin-top: 1.5rem;
+}
+
+details {
     background: #141211;
     border: 1px solid var(--ffv-border);
     border-radius: 14px;
     padding: 14px 16px;
 }
 
-#ffv-landing summary {
+summary {
     cursor: pointer;
     font-weight: 700;
     color: var(--ffv-ink);
 }
 
-#ffv-landing .map {
-    aspect-ratio: 16/9;
+details[open] p {
+    margin-top: 0.5rem;
+}
+
+/* ====== VIDEOS Y MAPAS RESPONSIVOS ====== */
+.responsive-embed {
+    position: relative;
+    overflow: hidden;
     width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    /* Aplicado al contenedor */
+}
+
+.responsive-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     border: 0;
-    border-radius: 14px;
 }
 
-#ffv-landing .share {
-    margin: 1rem 0;
-}
-
-/* ====== FOOT ====== */
-#ffv-landing .foot {
-    border-top: 1px solid var(--ffv-border);
-    padding: 16px 0 32px;
-    text-align: center;
-    color: var(--ffv-ink-dim);
-}
-
-/* ====== BADGES ====== */
-#ffv-landing .badges {
+/* ====== REDES SOCIALES Y COMPARTIR ====== */
+.social-buttons,
+.share-buttons {
     display: flex;
-    gap: 14px;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.share {
+    margin-top: 2rem;
+}
+
+/* ====== ORGANIZA Y FOOTER ====== */
+.badges {
+    display: flex;
+    gap: 1.5rem;
     align-items: center;
     flex-wrap: wrap;
-    margin: 1rem 0;
+    margin-top: 1rem;
 }
 
-#ffv-landing .badges img {
-    height: 4rem;
+.badges img {
+    height: 3.5rem;
+    width: auto;
     object-fit: contain;
     filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .4));
 }
 
-/* ===== Animated Border (glimmer) ===== */
-:root {
-    --ffv-ab-radius: 16px;
-    /* radio del borde */
-    --ffv-ab-thickness: 2px;
-    /* “grosor” del falso borde (margen interior) */
-    --ffv-ab-speed: 5s;
-    /* velocidad de giro */
-    --ffv-ab-color: rgba(216, 138, 26, .85);
-    /* dorado (puedes cambiarlo) */
+.foot {
+    border-top: 1px solid var(--ffv-border);
+    padding: 2rem 0;
+    text-align: center;
+    color: var(--ffv-ink-dim);
+    font-size: 0.9rem;
 }
 
+/* ====== BORDE ANIMADO ====== */
 .ffv-ab {
     position: relative;
     overflow: hidden;
     border-radius: var(--ffv-ab-radius);
     isolation: isolate;
-    /* asegura z-index correcto */
 }
 
-/* El contenido real va “dentro” con un pequeño margen para simular el borde fino */
 .ffv-ab__inner {
     position: relative;
     z-index: 1;
     border-radius: inherit;
     margin: var(--ffv-ab-thickness);
     background: #141211;
-    /* mantén tu color de tarjeta */
 }
 
 .ffv-ab__content {
     display: flex;
+    flex-wrap: wrap;
+    /* Para que se adapte en móvil */
     align-items: center;
     justify-content: space-between;
+    gap: 1rem;
 }
 
-.ffv-ab__content img {
-    width: 20rem;
-    height: 20rem;
+.programa-sello {
+    display: none;
+    /* Oculto en pantallas pequeñas */
 }
 
-/* La magia: una tira delgada con degradado que rota 360° */
+@media (min-width: 768px) {
+    .programa-sello {
+        display: block;
+        flex-shrink: 0;
+    }
+
+    .programa-sello img {
+        width: 15rem;
+        height: 15rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .programa-sello img {
+        width: 20rem;
+        height: 20rem;
+    }
+}
+
 .ffv-ab::before {
     content: "";
     position: absolute;
     z-index: 0;
-    /* tira vertical (delgada) que pasa por el centro */
     width: 110px;
-    /* ancho de la “luz” que recorre el borde */
     height: 800px;
-    /* alto de la tira (no hace falta cubrir todo) */
     top: 50%;
     left: 50%;
     translate: -50% -50%;
     transform-origin: top center;
-    /* pivota desde el centro superior */
     border-radius: var(--ffv-ab-radius);
-
-    /* Degradado estrecho y suave en medio, transparente a los lados */
-    background: linear-gradient(90deg,
-            rgba(255, 255, 255, 0) 0%,
-            var(--ffv-ab-color) 50%,
-            rgba(255, 255, 255, 0) 100%);
-
+    background: linear-gradient(90deg, transparent 0%, var(--ffv-ab-color) 50%, transparent 100%);
     animation: ffv-rotate var(--ffv-ab-speed) linear infinite;
     pointer-events: none;
-    /* no interfiere con clics */
     mix-blend-mode: lighten;
-    /* opcional: resalta sobre fondos oscuros */
 }
 
-.image-logo img {
-    width: 30%;
-    border-radius: 50%;
-}
-
-/* Animación de giro continuo */
 @keyframes ffv-rotate {
     from {
         transform: rotate(0deg);
@@ -428,29 +571,9 @@ h3 {
     }
 }
 
-/* Accesibilidad: respeta “reducir movimiento” */
 @media (prefers-reduced-motion: reduce) {
     .ffv-ab::before {
         animation: none;
         opacity: .35;
-    }
-}
-
-/* Responsivo */
-@media (max-width: 768px) {
-    .hero-video {
-        object-fit: cover;
-        width: 100%;
-        min-width: none;
-        height: auto;
-    }
-}
-
-@media (min-width: 768px) {
-    .hero-video {
-        object-fit: cover;
-        width: 100%;
-        min-width: 40%;
-        height: auto;
     }
 }

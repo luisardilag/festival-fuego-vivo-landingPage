@@ -10,10 +10,13 @@
         content="Festival del Fuego Vivo, Talca, Egipto, desfile, stands, conferencia, teatro, entrada libre, cultura, arte, historia">
     <meta name="author" content="Gnosis Chile">
     <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <!-- Enlaza el nuevo CSS -->
     <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- La fuente Cinzel no estaba enlazada, la he añadido para los títulos -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
     <link rel="canonical" href="https://www.gnosischile.cl/festivalfuegovivo">
     <meta property="og:title" content="Festival del Fuego Vivo 2025 · Talca">
     <meta property="og:description"
@@ -27,7 +30,9 @@
         <!-- HERO -->
         <section class="hero" id="hero">
             <div class="bg">
-                <video class="hero-video" src="assets/video/001-Anubis-templo.mp4" autoplay muted loop></video>
+                <video class="hero-video" src="assets/video/001-Anubis-templo.mp4" autoplay muted loop
+                    playsinline></video>
+                <div class="veil"></div>
             </div>
             <div class="wrap content">
                 <div class="image-logo">
@@ -39,9 +44,6 @@
                 <p class="subtitle">Desfile · 12 Stands · Conferencia · Teatro · Un día para vivir la sabiduría del
                     Antiguo Egipto.</p>
                 <div class="facts">
-                    <!-- <span class="badge badge--soft badge--warning"><span class="badge__dot"></span> Sábado 01/Nov ·
-                        12:00
-                        a 21:00</span> -->
                     <span class="fact">Sábado 01/Nov · 12:00 a 21:00</span>
                     <span class="fact">Ciudad de Talca</span>
                     <span class="fact">Apto para todo público</span>
@@ -61,17 +63,13 @@
                     <a class="btn btn-outline"
                         href="https://facebook.com/festivalFuegovivoChile?utm_source=landing&utm_medium=footer&utm_campaign=fuegovivo2025"
                         target="_blank" rel="noopener">Facebook</a>
-
                     <a class="btn btn-outline"
                         href="https://instagram.com/festivalFuegovivoChile?utm_source=landing&utm_medium=footer&utm_campaign=fuegovivo2025"
                         target="_blank" rel="noopener">Instagram</a>
-
                     <a class="btn btn-outline"
                         href="https://youtube.com/@festivalFuegovivoChile?utm_source=landing&utm_medium=footer&utm_campaign=fuegovivo2025"
                         target="_blank" rel="noopener">YouTube</a>
                 </div>
-
-
             </div>
         </section>
 
@@ -81,19 +79,18 @@
                 <div class="card">
                     <h2>¿Qué es el Festival?</h2>
                     <p>El Festival del Fuego Vivo es una jornada cultural gratuita que acerca al público la sabiduría
-                        del
-                        Antiguo Egipto a través del arte, la reflexión y la gnosis práctica. Desfile, 12 stands,
-                        conferencia
-                        y teatro en un mismo día.</p>
+                        del Antiguo Egipto a través del arte, la reflexión y la gnosis práctica. Desfile, 12 stands,
+                        conferencia y teatro en un mismo día.</p>
                     <p class="muted">Para todo público: familias, estudiantes, amantes del arte y la historia.</p>
                     <div class="cta">
                         <a href="#form" class="btn">Confirmar asistencia</a>
                         <a href="#stands" class="btn btn-outline">Ver los 12 stands</a>
                     </div>
                 </div>
-                <div class="card" style="display:grid;place-items:center;">
-                    <div style="width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden;">
-                        <iframe width="560" height="315"
+                <div class="card card--embed">
+                    <!-- Contenedor para video responsivo -->
+                    <div class="responsive-embed">
+                        <iframe
                             src="https://www.youtube-nocookie.com/embed/o9tXe_4Foek?si=MrTXwYzI9rVAkeiW&amp;controls=1"
                             title="YouTube video player" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -123,11 +120,9 @@
                                     <div class="tl-time">13:00 – 18:00</div>
                                     <div class="tl-title">12 Stands temáticos</div>
                                     <p class="muted">Pirámides y Faraón · Mitología · Tarot · Deidades · Libro de los
-                                        Muertos ·
-                                        Música · Autorrealización (Rey Interno) · Justicia Cósmica (Ma’at) · Simbología
-                                        · Nut e
-                                        Isis
-                                        · Agricultura · Gnosis.</p>
+                                        Muertos · Música · Autorrealización (Rey Interno) · Justicia Cósmica (Ma’at) ·
+                                        Simbología
+                                        · Nut e Isis · Agricultura · Gnosis.</p>
                                 </div>
                                 <div class="tl-item">
                                     <div class="tl-time">18:00 – 19:00</div>
@@ -141,7 +136,7 @@
                                     <p class="muted">Misterios de la vida y la muerte en escena.</p>
                                 </div>
                             </div>
-                            <div>
+                            <div class="programa-sello">
                                 <img src="assets/img/egipto/festival-fuego-vivo-chile-2025-sell.webp"
                                     alt="sello egipto">
                             </div>
@@ -155,8 +150,8 @@
         <section id="stands">
             <div class="wrap">
                 <h2>Los 12 Stands</h2>
-                <div class="grid grid-3" style="margin-top:12px;">
-                    <!-- Repite tarjetas; reemplaza imágenes -->
+                <div class="grid grid-3">
+                    <!-- Stand items... -->
                     <div class="stand"><img src="assets/img/stands/01-piramides-faraon.webp"
                             alt="festival fuego vivo piramides" loading="lazy" decoding="async">
                         <div>
@@ -238,7 +233,7 @@
                             loading="lazy" decoding="async">
                         <div>
                             <h4>Gnosis</h4>
-                            <p>Stand de la Cultura Gnóstica, sus programas de estudios gratuitos y más</p>
+                            <p>Stand de la Cultura Gnóstica, sus programas de estudios gratuitos y más.</p>
                         </div>
                     </div>
                 </div>
@@ -249,33 +244,24 @@
         <section id="destacados">
             <div class="wrap grid grid-2">
                 <div class="card">
-                    <div>
-                        <img src="assets/img/egipto/Isis-y-su-hijo-horus-festival-fuego-vivo.webp" alt="isis y horus"
-                            style="width:100%;aspect-ratio:16/9;border-radius:12px;object-fit:cover;border:1px solid var(--ffv-border);"
-                            loading="lazy" decoding="async">
-                    </div>
+                    <img class="card-image" src="assets/img/egipto/Isis-y-su-hijo-horus-festival-fuego-vivo.webp"
+                        alt="isis y horus" loading="lazy" decoding="async">
                     <h2>Conferencia: Set y Osiris</h2>
                     <p>Una narración viva para comprender arquetipos de muerte, desmembramiento y resurrección; la
-                        victoria
-                        de Horus y el juicio de Osiris como claves de transformación interior.</p>
+                        victoria de Horus y el juicio de Osiris como claves de transformación interior.</p>
                     <p class="muted">18:00 – 19:00 · Talca</p>
                     <a href="#form" class="btn">Reservar mi lugar (gratis)</a>
                 </div>
                 <div class="card">
-
-                    <div>
-                        <img src="assets/img/egipto/obra-teatro-festival-fuego-vivo.webp" alt="obra teatro"
-                            style="width:100%;aspect-ratio:16/9;border-radius:12px;object-fit:cover;border:1px solid var(--ffv-border);"
-                            loading="lazy" decoding="async">
-                    </div>
+                    <img class="card-image" src="assets/img/egipto/obra-teatro-festival-fuego-vivo.webp"
+                        alt="obra teatro" loading="lazy" decoding="async">
                     <h2>Obra de teatro (cierre)</h2>
                     <p>Una obra magistral de los misterios de la Vida y de la Muerte que invita al asombro y al
-                        autoconocimiento a través de símbolos, música y
-                        puesta en escena.</p>
+                        autoconocimiento a través de símbolos, música y puesta en escena.</p>
                     <p class="muted">19:30 – 21:00 · Talca</p>
                     <a href="#form" class="btn btn-outline">Asistir al cierre</a>
-
                 </div>
+            </div>
         </section>
 
         <!-- INFO PRÁCTICA -->
@@ -286,7 +272,7 @@
                     <p><b>Lugar:</b> Talca (dirección exacta por confirmar aquí y en redes).</p>
                     <p><b>Entrada:</b> Libre y gratuita.</p>
                     <p><b>Recomendaciones:</b> Llega con anticipación al desfile; ropa cómoda y agua.</p>
-                    <div class="grid" style="margin-top:12px;">
+                    <div class="grid faq-grid">
                         <details>
                             <summary>¿Puedo asistir con niños?</summary>
                             <p>Sí, es un evento familiar. Se recomienda supervisión en desfile y teatro.</p>
@@ -301,13 +287,14 @@
                         </details>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card card--embed">
                     <h2>Mapa</h2>
-                    <!-- Reemplaza el src del mapa cuando esté confirmado -->
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3250.7596521211785!2d-71.6639673632063!3d-35.435983462427835!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9665c7d011d64d4f%3A0xd605240a3e23c297!2sAnfiteatro%20Parque%20Costanera!5e0!3m2!1ses-419!2scl!4v1755739297124!5m2!1ses-419!2scl"
-                        width="100%" height="450" style="border:0; border-radius: 3%;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <!-- Contenedor para mapa responsivo -->
+                    <div class="responsive-embed">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3250.7596521211785!2d-71.6639673632063!3d-35.435983462427835!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9665c7d011d64d4f%3A0xd605240a3e23c297!2sAnfiteatro%20Parque%20Costanera!5e0!3m2!1ses-419!2scl!4v1755739297124!5m2!1ses-419!2scl"
+                            referrerpolicy="no-referrer-when-downgrade" loading="lazy"></iframe>
+                    </div>
                 </div>
             </div>
         </section>
@@ -317,7 +304,7 @@
             <div class="wrap">
                 <div class="card">
                     <h2>Confirma tu asistencia</h2>
-
+                    <!-- Aquí iría tu formulario -->
                 </div>
             </div>
         </section>
@@ -328,41 +315,31 @@
                 <div class="card">
                     <h2>Síguenos</h2>
                     <p>Facebook · Instagram · YouTube: <b>@festivalFuegovivoChile</b></p>
-                    <div class="badges">
+                    <div class="social-buttons">
                         <a class="btn btn-outline" href="https://facebook.com/festivalFuegovivoChile" target="_blank"
-                            rel="noopener" style="display: flex; align-items: center; gap: 8px;">
-                            <span>
-                                <img src="assets/img/logos/facebook.webp" alt="facebbook" width="16" height="16">
-                            </span>
-                            Facebook
+                            rel="noopener">
+                            <img src="assets/img/logos/facebook.webp" alt="facebook" width="16" height="16">
+                            <span>Facebook</span>
                         </a>
                         <a class="btn btn-outline" href="https://instagram.com/festivalFuegovivoChile" target="_blank"
-                            rel="noopener" style="display: flex; align-items: center; gap: 8px;">
-                            <span>
-                                <img src="assets/img/logos/instagram.webp" alt="instagram" width="16" height="16">
-                            </span>
-                            Instagram</a>
+                            rel="noopener">
+                            <img src="assets/img/logos/instagram.webp" alt="instagram" width="16" height="16">
+                            <span>Instagram</span></a>
                         <a class="btn btn-outline" href="https://youtube.com/@festivalFuegovivoChile" target="_blank"
-                            rel="noopener" style="display: flex; align-items: center; gap: 8px;">
-                            <span>
-                                <img src="assets/img/logos/youtube.webp" alt="youtube" width="16" height="16">
-                            </span>
-                            YouTube</a>
+                            rel="noopener">
+                            <img src="assets/img/logos/youtube.webp" alt="youtube" width="16" height="16">
+                            <span>YouTube</span></a>
                     </div>
 
-                    <div>
-                        <div class="share">
-                            <p class="muted">Comparte este evento:</p>
-
+                    <div class="share">
+                        <p class="muted">Comparte este evento:</p>
+                        <div class="share-buttons">
                             <a class="btn btn-outline" target="_blank" rel="noopener"
                                 href="https://api.whatsapp.com/send?text=Festival%20del%20Fuego%20Vivo%202025%20en%20Talca%3A%20https%3A%2F%2Fwww.gnosischile.cl%2Ffestivalfuegovivo">WhatsApp</a>
-
                             <a class="btn btn-outline" target="_blank" rel="noopener"
                                 href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.gnosischile.cl%2Ffestivalfuegovivo">Facebook</a>
-
                             <a class="btn btn-outline" target="_blank" rel="noopener"
                                 href="https://twitter.com/intent/tweet?text=Festival%20del%20Fuego%20Vivo%202025%20en%20Talca%20%E2%80%94%20Entrada%20libre&url=https%3A%2F%2Fwww.gnosischile.cl%2Ffestivalfuegovivo">X/Twitter</a>
-
                             <a class="btn btn-outline" target="_blank" rel="noopener"
                                 href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.gnosischile.cl%2Ffestivalfuegovivo">LinkedIn</a>
                         </div>
@@ -373,22 +350,21 @@
                     <p>Asociación Cultural de Estudios Gnósticos de Chile.</p>
                     <div class="badges" aria-label="Logos organizadores">
                         <a href="http://www.gnosischile.cl" target="_blank" rel="noopener noreferrer">
-                            <img src="assets/img/gnosis-chile-1.webp" alt="Gnosis Chile"
-                                style="max-width:100%;height:auto;display:block;">
+                            <img src="assets/img/gnosis-chile-1.webp" alt="Gnosis Chile">
                         </a>
                         <img src="assets/img/festival-fuego-vivo-logo--blanco.webp" alt="Festival del Fuego Vivo">
-                        <img src="assets/img/juventudes-gnosticas-logo.webp" alt="Gnosis Chile">
+                        <img src="assets/img/juventudes-gnosticas-logo.webp" alt="Juventudes Gnósticas">
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="foot">
+        <footer class="foot">
             <div class="wrap">
                 <small>© Festival del Fuego Vivo 2025 · <a href="https://www.gnosischile.cl" target="_blank"
                         rel="noopener">GNOSIS CHILE</a> · Talca</small>
             </div>
-        </section>
+        </footer>
 
         <!-- SCRIPTS -->
         <script>
@@ -409,9 +385,13 @@
                     const mm = Math.floor(delta / (1000 * 60));
                     delta -= mm * (1000 * 60);
                     const ss = Math.floor(delta / 1000);
-                    d.textContent = dd; h.textContent = ('0' + hh).slice(-2); m.textContent = ('0' + mm).slice(-2); s.textContent = ('0' + ss).slice(-2);
+                    if (d) d.textContent = dd;
+                    if (h) h.textContent = ('0' + hh).slice(-2);
+                    if (m) m.textContent = ('0' + mm).slice(-2);
+                    if (s) s.textContent = ('0' + ss).slice(-2);
                 }
-                tick(); setInterval(tick, 1000);
+                const intervalId = setInterval(tick, 1000);
+                tick();
             })();
 
             // ====== Add to Calendar (ICS dinámico) ======
@@ -420,69 +400,62 @@
                 if (!btn) return;
                 btn.addEventListener('click', function (e) {
                     e.preventDefault();
-                    // Evento: 01/11/2025 12:00–21:00 (UTC-3)
-                    const dtStart = '20251101T120000-0300';
-                    const dtEnd = '20251102T000000Z';
+                    const dtStart = '20251101T150000Z'; // 12:00 UTC-3
+                    const dtEnd = '20251102T000000Z'; // 21:00 UTC-3
                     const ics = [
-                        'BEGIN:VCALENDAR',
-                        'VERSION:2.0',
-                        'PRODID:-//Festival del Fuego Vivo//ES',
-                        'CALSCALE:GREGORIAN',
-                        'METHOD:PUBLISH',
-                        'BEGIN:VEVENT',
-                        'UID:ffv-2025-talca@gnosischile.cl',
-                        'DTSTAMP:' + new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z',
-                        'DTSTART:' + dtStart,
-                        'DTEND:' + dtEnd,
+                        'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Festival del Fuego Vivo//ES',
+                        'BEGIN:VEVENT', 'UID:ffv-2025-talca@gnosischile.cl',
+                        'DTSTAMP:' + new Date().toISOString().replace(/[-:.]/g, ''),
+                        'DTSTART:' + dtStart, 'DTEND:' + dtEnd,
                         'SUMMARY:Festival del Fuego Vivo · Talca',
                         'DESCRIPTION:Desfile · 12 Stands · Conferencia · Teatro. Entrada gratuita. Más info: https://www.gnosischile.cl/festivalfuegovivo',
-                        'LOCATION:Talca, Chile',
-                        'END:VEVENT',
-                        'END:VCALENDAR'
+                        'LOCATION:Talca, Chile', 'END:VEVENT', 'END:VCALENDAR'
                     ].join('\r\n');
-                    const blob = new Blob([ics], { type: 'text/calendar' });
+                    const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
                     const url = URL.createObjectURL(blob);
                     const a = document.createElement('a');
-                    a.href = url; a.download = 'Festival-del-Fuego-Vivo-2025.ics'; a.click();
-                    setTimeout(() => URL.revokeObjectURL(url), 1500);
+                    a.href = url; a.download = 'Festival-del-Fuego-Vivo-2025.ics';
+                    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
                 });
             })();
         </script>
 
-        <!-- SCHEMA.ORG EVENT -->
+        <!-- SCHEMA.ORG -->
         <script type="application/ld+json">
         {
          "@context": "https://schema.org",
-         "@type": "FAQPage",
-         "mainEntity": [
-          {
-           "@type": "Question",
-           "name": "¿Puedo asistir con niños?",
-           "acceptedAnswer": { "@type": "Answer", "text": "Sí, es un evento familiar. Se recomienda supervisión en desfile y teatro." }
-          },
-          {
-           "@type": "Question",
-           "name": "¿Habrá estacionamiento y baños?",
-           "acceptedAnswer": { "@type": "Answer", "text": "Se informará el detalle al confirmar el lugar exacto." }
-          },
-          {
-           "@type": "Question",
-           "name": "¿Hay facilidades de accesibilidad?",
-           "acceptedAnswer": { "@type": "Answer", "text": "Habrá zonas de descanso y prioridad para adultos mayores. Indícalo en tu registro." }
+         "@type": "Event",
+         "name": "Festival del Fuego Vivo 2025",
+         "startDate": "2025-11-01T12:00-03:00",
+         "endDate": "2025-11-01T21:00-03:00",
+         "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+         "eventStatus": "https://schema.org/EventScheduled",
+         "location": {
+          "@type": "Place",
+          "name": "Anfiteatro Parque Costanera",
+          "address": {
+           "@type": "PostalAddress",
+           "addressLocality": "Talca",
+           "addressRegion": "Maule",
+           "addressCountry": "CL"
           }
-         ]
-        }
-        </script>
-
-
-        <script type="application/ld+json">
-        {
-         "@context": "https://schema.org",
-         "@type": "BreadcrumbList",
-         "itemListElement": [
-          { "@type":"ListItem","position":1,"name":"Inicio","item":"https://www.gnosischile.cl/" },
-          { "@type":"ListItem","position":2,"name":"Festival del Fuego Vivo 2025","item":"https://www.gnosischile.cl/festivalfuegovivo" }
-         ]
+         },
+         "image": [
+          "https://www.gnosischile.cl/festivalfuegovivo/assets/img/og-image.webp"
+         ],
+         "description": "Jornada cultural gratuita sobre el Antiguo Egipto con desfile, 12 stands temáticos, conferencia narrativa y obra de teatro.",
+         "offers": {
+          "@type": "Offer",
+          "url": "https://www.gnosischile.cl/festivalfuegovivo",
+          "price": "0",
+          "priceCurrency": "CLP",
+          "availability": "https://schema.org/InStock"
+         },
+         "performer": {
+          "@type": "Organization",
+          "name": "Gnosis Chile"
+         }
         }
         </script>
     </div>
