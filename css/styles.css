@@ -5,12 +5,15 @@
 /* ====== VARIABLES Y CONFIGURACIÓN GLOBAL ====== */
 :root {
     --ffv-bg: #0f0e0e;
+    --ffv-white: #ffffff;
     --ffv-ink: #f8f1e5;
     --ffv-gold: #d88a1a;
     --ffv-accent: #e34f1c;
     --ffv-ink-dim: #d6cec0;
     --ffv-card: #171515;
     --ffv-border: #2a2626;
+    --ffv-tag: #6d180f;
+    --ffv-red: #ec3831;
 
     --font-body: 'Roboto', Inter, system-ui, -apple-system, sans-serif;
     --font-heading: "Cinzel", Georgia, serif;
@@ -19,6 +22,53 @@
     --ffv-ab-thickness: 2px;
     --ffv-ab-speed: 5s;
     --ffv-ab-color: rgba(216, 138, 26, .85);
+}
+
+/* UTILITIES */
+.flex {
+    display: flex;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mt-1 {
+    margin-top: .8rem;
+}
+
+.mt-2 {
+    margin-top: 1.6rem;
+}
+
+.mt-3 {
+    margin-top: 2.4rem;
+}
+
+.mb-1 {
+    margin-bottom: .8rem;
+}
+
+.mb-2 {
+    margin-bottom: 1.6rem;
+}
+
+.mb-3 {
+    margin-bottom: 2.4rem;
+}
+
+.gap-smaller {
+    gap: .4rem;
+}
+
+.gap-1 {
+    gap: .8rem;
+}
+
+.gap-2 {
+    gap: 1.6rem;
 }
 
 /* ====== RESET Y ESTILOS BASE ====== */
@@ -236,6 +286,9 @@ img {
     letter-spacing: .06em;
     text-transform: uppercase;
     margin-bottom: 1rem;
+    background: var(--ffv-tag);
+    padding: .5rem 1rem;
+    border-radius: 25px;
 }
 
 .title {
@@ -445,12 +498,46 @@ details[open] p {
 .share-buttons {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem;
+    gap: 0.5rem;
     margin-top: 1rem;
 }
 
 .share {
     margin-top: 2rem;
+}
+
+/* ======= SPONSORS ======= */
+.sponsor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sponsor .sponsor-items {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.sponsor .sponsor-items img {
+    height: 5.5rem;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .4));
+}
+
+.sponsor .sponsor-items img:hover {
+    transform: scale(1.05);
+    transition: transform .3s ease, filter .3s ease;
+}
+
+.sponsor-bg {
+    background: var(--ffv-white);
+    border: 1px solid var(--ffv-border);
+    border-radius: 16px;
 }
 
 /* ====== ORGANIZA Y FOOTER ====== */
@@ -463,7 +550,7 @@ details[open] p {
 }
 
 .badges img {
-    height: 3.5rem;
+    height: 100px;
     width: auto;
     object-fit: contain;
     filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .4));
@@ -477,6 +564,10 @@ details[open] p {
     font-size: 0.9rem;
     margin-top: 2rem;
     background-color: #0f0e0e;
+}
+
+.develop-by-text {
+    color: var(--ffv-red);
 }
 
 /* ====== BORDE ANIMADO ====== */
