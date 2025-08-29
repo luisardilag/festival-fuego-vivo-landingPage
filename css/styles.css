@@ -15,6 +15,16 @@
     --ffv-tag: #6d180f;
     --ffv-red: #ec3831;
 
+    --primary: 221 83% 53%;
+    /* Indigo-ish */
+    --success: 142 70% 45%;
+    /* Green */
+    --warning: 38 92% 50%;
+    /* Amber */
+    --danger: 0 72% 51%;
+    /* Red */
+    --neutral: 220 9% 46%;
+
     --font-body: 'Roboto', Inter, system-ui, -apple-system, sans-serif;
     --font-heading: "Cinzel", Georgia, serif;
 
@@ -27,6 +37,7 @@
 /* UTILITIES */
 .flex {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .flex-center {
@@ -69,6 +80,21 @@
 
 .gap-2 {
     gap: 1.6rem;
+}
+
+.text--gold {
+    color: var(--ffv-gold);
+    font-weight: 700;
+}
+
+.text--accent {
+    color: var(--ffv-accent);
+    font-weight: 700;
+}
+
+.text--red {
+    color: var(--ffv-red);
+    font-weight: 700;
 }
 
 /* ====== RESET Y ESTILOS BASE ====== */
@@ -257,6 +283,7 @@ img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    opacity: .75;
 }
 
 .hero .veil {
@@ -414,6 +441,7 @@ img {
 .tl-title {
     font-weight: 700;
     color: var(--ffv-ink);
+    margin-top: .5rem;
 }
 
 .tl-time {
@@ -596,6 +624,103 @@ details[open] p {
 .programa-sello {
     display: block;
 }
+
+/* ====== Badge base ====== */
+.badge {
+    --b: var(--neutral);
+    display: inline-flex;
+    align-items: center;
+    gap: .4em;
+    line-height: 1;
+    font-weight: 600;
+    border-radius: 9999px;
+    border: 1px solid transparent;
+    padding: .25rem .5rem;
+    font-size: .9rem;
+    white-space: nowrap;
+    transition: filter .15s ease, background-color .15s ease, border-color .15s ease, color .15s ease;
+}
+
+.badge--sm {
+    font-size: .6875rem;
+    padding: .125rem .4rem;
+}
+
+.badge--lg {
+    font-size: .875rem;
+    padding: .375rem .625rem;
+}
+
+.badge--rounded {
+    border-radius: .5rem;
+}
+
+.badge--primary {
+    --b: var(--primary);
+}
+
+.badge--success {
+    --b: var(--success);
+}
+
+.badge--warning {
+    --b: var(--warning);
+}
+
+.badge--danger {
+    --b: var(--danger);
+}
+
+.badge--neutral {
+    --b: var(--neutral);
+}
+
+/* Estilos visuales */
+.badge--solid {
+    background-color: hsl(var(--b));
+    color: #fff;
+    border-color: hsl(var(--b));
+}
+
+.badge--soft {
+    background-color: hsla(var(--b) / .14);
+    color: hsl(var(--b));
+}
+
+.badge--outline {
+    background-color: transparent;
+    color: hsl(var(--b));
+    border-color: hsla(var(--b) / .45);
+}
+
+/* Partes internas */
+.badge__dot {
+    width: .45em;
+    height: .45em;
+    border-radius: 9999px;
+    background: currentColor;
+    flex: 0 0 auto;
+}
+
+.badge__icon {
+    width: 1.05em;
+    height: 1.05em;
+    display: inline-block;
+    flex: 0 0 auto;
+}
+
+.badge__avatar {
+    width: 1.15em;
+    height: 1.15em;
+    border-radius: 9999px;
+    object-fit: cover;
+    flex: 0 0 auto;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, .75);
+}
+
+
+
+/* ===== RESPONSIVE ====== */
 
 @media (min-width: 769px) {
     .programa-sello {
