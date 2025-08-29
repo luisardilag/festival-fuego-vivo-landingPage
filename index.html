@@ -435,14 +435,34 @@
         <!-- FORMULARIO -->
         <section id="form">
             <div class="wrap">
-                <div class="card">
-                    <h2>Confirma tu asistencia:</h2>
-                    <!-- Aquí iría tu formulario -->
+                <div class="card" aria-label="Formulario de confirmación de asistencia">
+                    <h2 class="mb-1">Confirma tu asistencia:</h2>
 
+                    <div>
+                        <form id="email-only" class="email-cta" method="post" action="/api/rsvp.php" novalidate>
+                            <!-- CSRF (se completa por JS) -->
+                            <input type="hidden" name="csrf" id="csrf-sub">
+                            <!-- Autorrelleno del nombre a partir del email para el endpoint existente -->
+                            <input type="hidden" name="name" id="name-sub">
+                            <!-- Tracking simple de fuente -->
+                            <input type="hidden" name="source" value="/landing#form">
 
+                            <label class="sr-only" for="email-sub">Tu correo electrónico</label>
+                            <input class="email-cta__input" type="email" name="email" id="email-sub"
+                                placeholder="tu@email.com" required autocomplete="email" inputmode="email" />
 
+                            <button class="email-cta__btn" type="submit" aria-label="Quiero asistir">
+                                <span>Quiero asistir</span>
+                                <!-- Flecha inline SVG -->
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path d="M13.172 12 8.222 7.05l1.414-1.414L16 12l-6.364 6.364-1.414-1.414z" />
+                                </svg>
+                            </button>
+                        </form>
 
-
+                        <p id="email-msg" class="muted" role="status" aria-live="polite" style="margin-top:.5rem"></p>
+                        <small class="muted">Usaremos tu correo solo para informarte novedades del evento.</small>
+                    </div>
 
                 </div>
             </div>
@@ -658,6 +678,61 @@
          }
         }
         </script>
+        <script>
+            (async function initEmailOnlyForm() {
+                const form = document.getElementById('email-only');
+                if (!form) return;
+
+                const emailInput = document.getElementById('email-sub');
+                const nameInput = document.getElementById('name-sub');
+                const csrfInput = document.getElementById('csrf-sub');
+                const msg = document.getElementById('email-msg');
+
+                // 1) Trae token CSRF
+                try {
+                    const res = await fetch('/api/rsvp.php?action=token', { credentials: 'same-origin' });
+                    const data = await res.json();
+                    if (data.csrf) csrfInput.value = data.csrf;
+                } catch (e) { /* opcional: log */ }
+
+                // 2) Envío
+                form.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const email = (emailInput.value || '').trim();
+                    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                        msg.textContent = 'Ingresa un email válido.'; return;
+                    }
+
+                    // Autorrellena "name" para cumplir con el endpoint existente
+                    const local = email.split('@')[0] || 'Suscriptor';
+                    const prettyName = local
+                        .replace(/[._-]+/g, ' ')
+                        .replace(/\s+/g, ' ')
+                        .trim()
+                        .replace(/\b\p{L}/gu, m => m.toUpperCase()); // capitaliza letras
+                    nameInput.value = prettyName || 'Suscriptor';
+
+                    msg.textContent = 'Enviando...';
+
+                    try {
+                        const body = new FormData(form);
+                        // el endpoint ya fija event_date=2025-11-01 internamente
+                        const res = await fetch(form.action, { method: 'POST', body, credentials: 'same-origin' });
+                        const json = await res.json();
+
+                        if (json.ok) {
+                            msg.textContent = '¡Listo! Te registramos con éxito. Te avisaremos por correo.';
+                            form.reset();
+                        } else {
+                            msg.textContent = json.error || 'No se pudo enviar. Intenta nuevamente.';
+                        }
+                    } catch {
+                        msg.textContent = 'Error de red. Intenta nuevamente.';
+                    }
+                });
+            })();
+        </script>
+
     </div>
 </body>
 

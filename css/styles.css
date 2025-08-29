@@ -718,6 +718,104 @@ details[open] p {
     box-shadow: 0 0 0 2px rgba(255, 255, 255, .75);
 }
 
+/* Accesibilidad: solo para lectores de pantalla */
+.sr-only {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Contenedor decorado del input + botón */
+.email-cta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 14px;
+    border: 1px solid var(--ffv-border);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, 0)) border-box,
+        #141211 padding-box;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, .25);
+}
+
+.email-cta:focus-within {
+    border-color: var(--ffv-gold);
+    box-shadow:
+        0 0 0 3px rgba(216, 138, 26, .18),
+        0 10px 20px rgba(0, 0, 0, .35);
+}
+
+.email-cta__input {
+    flex: 1;
+    min-width: 0;
+    /* evita overflow */
+    height: 48px;
+    padding: 0 14px;
+    border: 1px solid var(--ffv-border);
+    border-radius: 12px;
+    background: rgba(18, 15, 13, .75);
+    color: var(--ffv-ink);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
+}
+
+.email-cta__input::placeholder {
+    color: rgba(214, 206, 192, .75);
+}
+
+.email-cta__input:focus {
+    border-color: var(--ffv-gold);
+    background: rgba(18, 15, 13, .95);
+    box-shadow: 0 0 0 3px rgba(216, 138, 26, .18);
+}
+
+/* Botón con gradiente sutil */
+.email-cta__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 16px;
+    height: 48px;
+    min-width: 160px;
+    border: 0;
+    border-radius: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    color: #1a140a;
+    background: linear-gradient(90deg, var(--ffv-gold), var(--ffv-accent));
+    box-shadow: 0 8px 18px rgba(227, 79, 28, .25);
+    transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+}
+
+.email-cta__btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, .35);
+    filter: brightness(1.02);
+}
+
+.email-cta__btn:active {
+    transform: translateY(0);
+}
+
+/* Responsive: stack en móviles estrechos */
+@media (max-width: 520px) {
+    .email-cta {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .email-cta__btn {
+        width: 100%;
+    }
+}
 
 
 /* ===== RESPONSIVE ====== */
