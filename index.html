@@ -17,8 +17,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
-    <link rel="canonical" href="https://www.gnosischile.cl/festivalfuegovivo">
-    <meta property="og:title" content="Festival del Fuego Vivo 2025 · Talca">
+    <link rel="canonical" href="https://www.gnosischile.cl/festivalfuegovivo/">
+    <meta property="og:url" content="https://www.gnosischile.cl/festivalfuegovivo/">
     <meta property="og:description"
         content="Desfile, 12 stands, conferencia narrativa de Set y Osiris y obra de teatro. Entrada libre y gratuita. Vive la sabiduría del Antiguo Egipto.">
     <title>Festival Fuego Vivo · Chile</title>
@@ -51,7 +51,7 @@
                             <path
                                 d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
                         </svg>
-                        Sábado 01/Nov · 12:00 a 21:00</span>
+                        Sábado 01/Nov · 15:00 a 21:00</span>
                     <span class="fact flex flex-center gap-smaller">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-geo-alt" viewBox="0 0 16 16">
@@ -130,7 +130,7 @@
                     <div class="responsive-embed">
                         <iframe
                             src="https://www.youtube-nocookie.com/embed/o9tXe_4Foek?si=MrTXwYzI9rVAkeiW&amp;controls=1"
-                            title="YouTube video player" frameborder="0"
+                            title="YouTube video player" frameborder="0" loading="lazy"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
@@ -308,7 +308,7 @@
                         <h2 class="mb-1">Conferencia narrativa:</h2>
                         <h3 class="text--gold">El Mito legendario de Osiris y Seth</h3>
                     </div>
-                    <p>Una narración viva desde el conocimineto de la Gnosis, sobre la batalla interior: la <b>luz de la
+                    <p>Una narración viva desde el conocimiento de la Gnosis, sobre la batalla interior: la <b>luz de la
                             Conciencia</b>
                         frente a las tinieblas de la
                         ignorancia y el Ego. Allí es donde Horus surge como el héroe que batalla contra la oscuridad.
@@ -525,7 +525,8 @@
                     <p>Asociación Cultural de Estudios Gnósticos de Chile.</p>
                     <div class="badges" aria-label="Logos organizadores">
                         <a href="http://www.gnosischile.cl" target="_blank" rel="noopener noreferrer">
-                            <img src="assets/img/gnosis-chile-1.webp" alt="Gnosis Chile">
+                            <img src="assets/img/gnosis-chile-1.webp" alt="Gnosis Chile" loading="lazy"
+                                decoding="async">
                         </a>
                         <img src="assets/img/festival-fuego-vivo-logo--blanco.webp" alt="Festival del Fuego Vivo"
                             loading="lazy" decoding="async">
@@ -546,7 +547,8 @@
 
                             <!-- LISTADO DE PATROCINADORES -->
                             <span class="sponsor-items">
-                                <a href="https://ardiladev.com/" target="_blank" rel="noopener noreferrer">
+                                <a href="https://www.linkedin.com/in/luisardilag/" target="_blank"
+                                    rel="noopener noreferrer">
                                     <img src="assets/img/sponsors/develop-by-ArdilaDev.webp" alt="ArdilaDev"
                                         loading="lazy" />
                                 </a>
@@ -578,7 +580,7 @@
                         ·
                     </span>
 
-                    <a href="https://ardiladev.com" target="_blank" rel="noopener" class="flex">
+                    <a href="https://www.linkedin.com/in/luisardilag/" target="_blank" rel="noopener" class="flex">
                         <img src="assets/img/sponsors/develop-by-ArdilaDev.webp" alt="ArdilaDev" loading="lazy"
                             width="16" />
                     </a>
@@ -610,6 +612,7 @@
                     if (h) h.textContent = ('0' + hh).slice(-2);
                     if (m) m.textContent = ('0' + mm).slice(-2);
                     if (s) s.textContent = ('0' + ss).slice(-2);
+                    if (target - now <= 0) { clearInterval(intervalId); }
                 }
                 const intervalId = setInterval(tick, 1000);
                 tick();
