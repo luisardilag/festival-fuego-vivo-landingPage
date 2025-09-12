@@ -27,7 +27,7 @@ try {
 } catch (Throwable $e) {
     http_response_code(500);
     header('Content-Type: application/json; charset=utf-8');
-    echo json_encode(['ok' => false, 'error' => 'DB connection error']);
+    echo json_encode(['ok' => false, 'error' => 'error internal']);
     exit;
 }
 
