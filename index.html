@@ -437,7 +437,7 @@
         <section id="form">
             <div class="wrap">
                 <div class="card" aria-label="Formulario de confirmación de asistencia">
-                    <h2 class="mb-1">Confirma tu asistencia:</h2>
+                    <h2 class="mb-1">Confirma tu asistencia <span class="text--gold">(Próximamente):</span></h2>
 
                     <div>
                         <form id="email-only" class="email-cta" method="post" action="/api/rsvp.php" novalidate>
@@ -457,7 +457,7 @@
                             <input class="email-cta__input" type="email" name="email" id="email-sub"
                                 placeholder="tu@email.com" required autocomplete="email" inputmode="email" />
 
-                            <button class="email-cta__btn" type="submit" aria-label="Quiero asistir">
+                            <button class="email-cta__btn disabled" type="submit" aria-label="Quiero asistir">
                                 <span>QUIERO ASISTIR</span>
                                 <!-- Flecha inline SVG -->
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
