@@ -9,11 +9,11 @@ session_start([
     'cookie_samesite' => 'Lax',
 ]);
 
-// Credenciales (idealmente desde variables de entorno de cPanel)
-$db_host = 'localhost';
-$db_name = 'TU_BASE_DE_DATOS';
-$db_user = 'TU_USUARIO';
-$db_pass = 'TU_PASSWORD';
+// Credenciales cargadas desde variables de entorno
+$db_host = getenv('DB_HOST') ?: 'localhost';
+$db_name = getenv('DB_NAME') ?: 'example_db';
+$db_user = getenv('DB_USER') ?: 'example_user';
+$db_pass = getenv('DB_PASS') ?: 'example_pass';
 
 $dsn = "mysql:host=$db_host;dbname=$db_name;charset=utf8mb4";
 $options = [
