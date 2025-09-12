@@ -117,7 +117,7 @@
                         Conferencia narrativa y Obra de Teatro.</p>
                     <div class="mt-2 mb-2" aria-label="Fecha y lugar del evento">
                         <span class="badge badge--soft badge--danger">
-                            Talca · 01 de noviembre · 12:00 a 21:00
+                            Talca · 01 de noviembre · 15:00 a 21:00
                         </span>
                     </div>
                     <div class="cta">
@@ -162,7 +162,7 @@
                             <div class="timeline">
                                 <div class="tl-item">
                                     <span class="badge badge--soft badge--warning">
-                                        12:00 – 13:00
+                                        15:00 – 16:00
                                     </span>
                                     <div class="tl-title">Desfile de apertura</div>
                                     <p class="muted">Recorrido temático por la ciudad · llegada a zona de stands.</p>
@@ -170,7 +170,7 @@
                                 <div class="tl-item">
 
                                     <span class="badge badge--soft badge--warning">
-                                        13:00 – 18:00
+                                        16:00 – 18:00
                                     </span>
                                     <div class="tl-title">12 Stands temáticos</div>
                                     <p class="muted">Pirámides y Faraón · Mitología · Tarot · Deidades · Libro de los
@@ -182,7 +182,7 @@
                                     <span class="badge badge--soft badge--warning">
                                         18:00 – 18:45
                                     </span>
-                                    <div class="tl-title">Conferencia narrativa: Set y Osiris</div>
+                                    <div class="tl-title">Conferencia narrativa: Seth y Osiris</div>
                                     <p class="muted">Una narración viva sobre arquetipos, juicio y transformación
                                         interior.</p>
                                 </div>
@@ -412,8 +412,8 @@
                             <p>Sí, es un evento familiar. Se recomienda supervisión en desfile y teatro.</p>
                         </details>
                         <details>
-                            <summary>¿Habrá estacionamiento y baños?</summary>
-                            <p>Se informará el detalle al confirmar el lugar exacto.</p>
+                            <summary>¿Habrá baños y estacionamiento?</summary>
+                            <p>Se dispondrá de baños en el lugar y estacionamiento en las cercanías.</p>
                         </details>
                         <details>
                             <summary>Accesibilidad</summary>
@@ -441,12 +441,16 @@
 
                     <div>
                         <form id="email-only" class="email-cta" method="post" action="/api/rsvp.php" novalidate>
+
                             <!-- CSRF (se completa por JS) -->
                             <input type="hidden" name="csrf" id="csrf-sub">
                             <!-- Autorrelleno del nombre a partir del email para el endpoint existente -->
                             <input type="hidden" name="name" id="name-sub">
                             <!-- Tracking simple de fuente -->
                             <input type="hidden" name="source" value="/landing#form">
+
+                            <input type="text" name="website" tabindex="-1" autocomplete="off" class="hp"
+                                aria-hidden="true">
 
                             <label class="sr-only" for="email-sub">Tu correo electrónico</label>
                             <input class="email-cta__input" type="email" name="email" id="email-sub"
@@ -694,7 +698,10 @@
 
                 // 1) Trae token CSRF
                 try {
-                    const res = await fetch('/api/rsvp.php?action=token', { credentials: 'same-origin' });
+                    const res = await fetch('/api/rsvp.php?action=token', {
+                        credentials: 'same-origin',
+                        headers: { 'Accept': 'application/json' }
+                    });
                     const data = await res.json();
                     if (data.csrf) csrfInput.value = data.csrf;
                 } catch (e) { /* opcional: log */ }

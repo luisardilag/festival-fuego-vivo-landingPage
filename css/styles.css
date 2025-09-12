@@ -817,6 +817,10 @@ details[open] p {
     }
 }
 
+.hp {
+    position: absolute;
+    left: -9999px;
+}
 
 /* ===== RESPONSIVE ====== */
 
