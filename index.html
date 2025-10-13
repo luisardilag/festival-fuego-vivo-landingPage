@@ -699,63 +699,6 @@
          }
         }
         </script>
-        <script>
-            (async function initEmailOnlyForm() {
-                const form = document.getElementById('email-only');
-                if (!form) return;
-
-                const emailInput = document.getElementById('email-sub');
-                const nameInput = document.getElementById('name-sub');
-                const csrfInput = document.getElementById('csrf-sub');
-                const msg = document.getElementById('email-msg');
-
-                // 1) Trae token CSRF
-                try {
-                    const res = await fetch('/api/rsvp.php?action=token', {
-                        credentials: 'same-origin',
-                        headers: { 'Accept': 'application/json' }
-                    });
-                    const data = await res.json();
-                    if (data.csrf) csrfInput.value = data.csrf;
-                } catch (e) { /* opcional: log */ }
-
-                // 2) Envío
-                form.addEventListener('submit', async (e) => {
-                    e.preventDefault();
-                    const email = (emailInput.value || '').trim();
-                    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                        msg.textContent = 'Ingresa un email válido.'; return;
-                    }
-
-                    // Autorrellena "name" para cumplir con el endpoint existente
-                    const local = email.split('@')[0] || 'Suscriptor';
-                    const prettyName = local
-                        .replace(/[._-]+/g, ' ')
-                        .replace(/\s+/g, ' ')
-                        .trim()
-                        .replace(/\b\p{L}/gu, m => m.toUpperCase()); // capitaliza letras
-                    nameInput.value = prettyName || 'Suscriptor';
-
-                    msg.textContent = 'Enviando...';
-
-                    try {
-                        const body = new FormData(form);
-                        // el endpoint ya fija event_date=2025-11-01 internamente
-                        const res = await fetch(form.action, { method: 'POST', body, credentials: 'same-origin' });
-                        const json = await res.json();
-
-                        if (json.ok) {
-                            msg.textContent = '¡Listo! Te registramos con éxito. Te avisaremos por correo.';
-                            form.reset();
-                        } else {
-                            msg.textContent = json.error || 'No se pudo enviar. Intenta nuevamente.';
-                        }
-                    } catch {
-                        msg.textContent = 'Error de red. Intenta nuevamente.';
-                    }
-                });
-            })();
-        </script>
 
     </div>
 </body>
