@@ -46,6 +46,10 @@
     align-items: center;
 }
 
+.space-between {
+    justify-content: space-between;
+}
+
 .mt-1 {
     margin-top: .8rem;
 }
@@ -548,6 +552,7 @@ details[open] p {
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 1rem;
+    cursor: pointer;
 }
 
 .sponsor .sponsor-items img {
@@ -566,6 +571,10 @@ details[open] p {
     background: var(--ffv-white);
     border: 1px solid var(--ffv-border);
     border-radius: 16px;
+}
+
+.sponsor-md {
+    width: 170px;
 }
 
 /* ====== ORGANIZA Y FOOTER ====== */

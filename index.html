@@ -69,7 +69,8 @@
                         Para todo público</span>
                 </div>
                 <div class="cta">
-                    <a href="#form" class="btn">Confirmar asistencia</a>
+                    <a href="https://ac.gnosis.is/f/30923/Talca-11-25" target="_blank" class="btn">Confirmar
+                        asistencia</a>
                     <a href="#programa" class="btn btn-outline">Ver programa</a>
                 </div>
                 <div class="timer" aria-live="polite" aria-label="Cuenta regresiva al festival">
@@ -128,8 +129,7 @@
                 <div class="card card--embed">
                     <!-- Contenedor para video responsivo -->
                     <div class="responsive-embed">
-                        <iframe
-                            src="https://www.youtube-nocookie.com/embed/o9tXe_4Foek?si=MrTXwYzI9rVAkeiW&amp;controls=1"
+                        <iframe src="https://www.youtube.com/embed/FLUp0wlRDrI?si=d3LSiMR_x4NFMul7"
                             title="YouTube video player" frameborder="0" loading="lazy"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -346,7 +346,8 @@
                     </div>
 
                     <div class="mt-2">
-                        <a href="#form" class="btn">Reservar mi lugar (gratis)</a>
+                        <a href="https://ac.gnosis.is/f/30923/Talca-11-25" target="_blank" class="btn">Reservar mi lugar
+                            (gratis)</a>
                     </div>
                 </div>
                 <div class="card">
@@ -392,7 +393,7 @@
                             Anfiteatro Parque Costanera
                         </span>
                     </div>
-                    <a href="#form" class="btn btn-outline">Asistir al cierre</a>
+                    <a href="https://ac.gnosis.is/f/30923/Talca-11-25" class="btn btn-outline">Asistir al cierre</a>
                 </div>
             </div>
         </section>
@@ -413,11 +414,12 @@
                         </details>
                         <details>
                             <summary>¿Habrá baños y estacionamiento?</summary>
-                            <p>Se dispondrá de baños en el lugar y estacionamiento en las cercanías.</p>
+                            <p>Se dispondrá algunos baños en el lugar y hay disponible estacionamiento en los
+                                alrededores.</p>
                         </details>
                         <details>
                             <summary>Accesibilidad</summary>
-                            <p>Zonas de descanso y prioridad a adultos mayores. Indícalo en tu registro.</p>
+                            <p>El lugar es accesible para personas con movilidad reducida.</p>
                         </details>
                     </div>
                 </div>
@@ -436,40 +438,17 @@
         <!-- FORMULARIO -->
         <section id="form">
             <div class="wrap">
-                <div class="card" aria-label="Formulario de confirmación de asistencia">
-                    <h2 class="mb-1">Confirma tu asistencia <span class="text--gold">(Próximamente):</span></h2>
+                <div class="card flex flex-center space-between" aria-label="Formulario de confirmación de asistencia">
+                    <h2 class="text--gold">Confirma tu asistencia</h2>
 
-                    <div>
-                        <form id="email-only" class="email-cta" method="post" action="/api/rsvp.php" novalidate>
-
-                            <!-- CSRF (se completa por JS) -->
-                            <input type="hidden" name="csrf" id="csrf-sub">
-                            <!-- Autorrelleno del nombre a partir del email para el endpoint existente -->
-                            <input type="hidden" name="name" id="name-sub">
-                            <!-- Tracking simple de fuente -->
-                            <input type="hidden" name="source" value="/landing#form">
-
-                            <label class="sr-only" for="name-sub">Nombre</label>
-                            <input class="email-cta__input" type="text" name="name" id="name-sub" placeholder="Nombre"
-                                required autocomplete="name" inputmode="text" />
-
-                            <label class="sr-only" for="email-sub">Tu correo electrónico</label>
-                            <input class="email-cta__input" type="email" name="email" id="email-sub"
-                                placeholder="tu@email.com" required autocomplete="email" inputmode="email" />
-
-                            <button class="email-cta__btn disabled" type="submit" aria-label="Quiero asistir">
-                                <span>QUIERO ASISTIR</span>
-                                <!-- Flecha inline SVG -->
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                    <path d="M13.172 12 8.222 7.05l1.414-1.414L16 12l-6.364 6.364-1.414-1.414z" />
-                                </svg>
-                            </button>
-                        </form>
-
-                        <p id="email-msg" class="muted" role="status" aria-live="polite" style="margin-top:.5rem"></p>
-                        <small class="muted">Usaremos tus datos solo para informarte novedades del evento.</small>
-                    </div>
-
+                    <button class="email-cta__btn" type="submit" aria-label="Quiero asistir" rel="noopener"
+                        onclick="window.open('https://ac.gnosis.is/f/30923/Talca-11-25', '_blank')">
+                        <span>QUIERO ASISTIR</span>
+                        <!-- Flecha inline SVG -->
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M13.172 12 8.222 7.05l1.414-1.414L16 12l-6.364 6.364-1.414-1.414z" />
+                        </svg>
+                    </button>
                 </div>
             </div>
         </section>
@@ -550,18 +529,50 @@
                     <div class="sponsor">
                         <div class="badges" aria-label="Logos patrocinadores principales">
 
-                            <!-- LISTADO DE PATROCINADORES -->
+                            <!-- Lumine Revestimientos Construcción -->
+                            <span class="sponsor-items">
+                                <a href="#" target="_blank" rel="noopener noreferrer">
+                                    <img src="assets/img/sponsors/lumine-revestimientos-construccion.webp"
+                                        alt="Lumine Revestimientos Construcción" loading="lazy" />
+                                </a>
+                            </span>
+
+                            <!-- Aceros Fenix -->
+                            <span class="sponsor-items">
+                                <a href="#" target="_blank" rel="noopener noreferrer">
+                                    <img src="assets/img/sponsors/aceros-fenix.webp" alt="Aceros Fenix"
+                                        loading="lazy" />
+                                </a>
+                            </span>
+
+                            <!-- B&B turismo -->
+                            <span class="sponsor-items sponsor-bg">
+                                <a href="#" target="_blank" rel="noopener noreferrer">
+                                    <img src="assets/img/sponsors/B&B_turismo.webp" alt="B&B turismo" loading="lazy" />
+                                </a>
+                            </span>
+
+                            <!-- Contabilidad Nuñez -->
+                            <span class="sponsor-items">
+                                <a href="#" target="_blank" rel="noopener noreferrer">
+                                    <img src="assets/img/sponsors/contabilidad-soluciones-nuñez.webp"
+                                        alt="Contabilidad Soluciones Nuñez" loading="lazy" />
+                                </a>
+                            </span>
+
+                            <!-- Aerosig -->
+                            <span class="sponsor-items sponsor-md">
+                                <a href="#" target="_blank" rel="noopener noreferrer">
+                                    <img src="assets/img/sponsors/aerosig.webp" alt="Aerosig" loading="lazy" />
+                                </a>
+                            </span>
+
+                            <!-- Luis Ardila -->
                             <span class="sponsor-items">
                                 <a href="https://www.linkedin.com/in/luisardilag/" target="_blank"
                                     rel="noopener noreferrer">
                                     <img src="assets/img/sponsors/develop-by-ArdilaDev.webp" alt="ArdilaDev"
                                         loading="lazy" />
-                                </a>
-                            </span>
-
-                            <span class="sponsor-items sponsor-bg">
-                                <a href="#" target="_blank" rel="noopener noreferrer">
-                                    <img src="assets/img/sponsors/B&B_turismo.webp" alt="B&B turismo" loading="lazy" />
                                 </a>
                             </span>
 
