@@ -573,6 +573,10 @@ details[open] p {
     border-radius: 16px;
 }
 
+.sponsor-lg {
+    width: 300px;
+}
+
 .sponsor-md {
     width: 170px;
 }
@@ -588,6 +592,7 @@ details[open] p {
     align-items: center;
     flex-wrap: wrap;
     margin-top: 1rem;
+    justify-content: space-around;
 }
 
 .badges img {
