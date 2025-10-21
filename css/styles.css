@@ -577,6 +577,10 @@ details[open] p {
     width: 170px;
 }
 
+.rounded {
+    border-radius: 16px;
+}
+
 /* ====== ORGANIZA Y FOOTER ====== */
 .badges {
     display: flex;
